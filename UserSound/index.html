@@ -1,0 +1,339 @@
+<!doctype html>
+<html>
+
+<head>
+	<link href="../css/style.css" rel="stylesheet" type="text/css" />
+	<style>
+		/*** golobal ***/
+		body {
+			background-image: url("../images/userSound.png");
+			margin: 50px 0;
+			font-family: "微软雅黑", cursive;
+		}
+		#heart {
+			display: block;
+			width: 100%;
+			height: 100%;
+			margin: 0;
+			padding: 0;
+			transition: 0.4s;
+		}
+		#heart>div {
+			position: absolute;
+		}
+		div>p {
+			float: left;
+			text-align: center;
+			margin: 0;
+			padding: 0;
+		}
+		.f5 {
+			width: 312px;
+			height: 100px;
+			line-height: 100px;
+			font-size: 78px;
+		}
+		.f4 {
+			width: 200px;
+			height: 100px;
+			line-height: 100px;
+			font-size: 60px;
+		}
+		.f3 {
+			font-size: 45px;
+			width: 188px;
+			height: 60px;
+			line-height: 60px;
+		}
+		.f2 {
+			font-size: 50px;
+			width: 125px;
+		}
+		.f1 {
+			font-size: 32px;
+			width: 110px;
+			height: 60px;
+		}
+		/*** color ***/
+		.font_red {
+			color: #ea1c5b;
+		}
+		.font_yellow {
+			color: #e2da01;
+		}
+		.font_purple {
+			color: #ea1ca8;
+		}
+		.font_sky_blue {
+			color: #1ef5e8;
+		}
+		.font_orange {
+			color: #cb7f12;
+		}
+		.font_shitYellow {
+			color: #a9a414;
+		}
+		.font_shitYellow2 {
+			color: #cd8a16;
+		}
+		.font_blue {
+			color: #1c78ea;
+		}
+		.font_blue2 {
+			color: #1e75e4;
+		}
+		.font_violet {
+			color: #5041be;
+		}
+		.font_dark_red {
+			color: #ea1c5b;
+		}
+		.font_yellowish {
+			color: #b6b515;
+		}
+		.font_rosiness {
+			color: #1d7b11;
+		}
+		.font_yellowish_green {
+			color: #3b8712;
+		}
+		.font_purple_red {
+			color: #d81d57;
+		}
+		/***  position ***/
+		.heart_0 {
+			top: 420px;
+			left: 340px;
+		}
+		.heart_4 {
+			top: 360px;
+			left: 390px;
+		}
+		.heart_3 {
+			top: 300px;
+			left: 420px;
+		}
+		.heart_2 {
+			top: 245px;
+			left: 470px;
+		}
+		.heart_1 {
+			top: 200px;
+			left: 520px;
+		}
+		.heart_5 {
+			position: absolute;
+			top: 525px;
+			left: 415px;
+			height: 70px;
+			line-height: 70px;
+			display: block;
+		}
+		.heart_6 {
+			position: absolute;
+			top: 585px;
+			left: 495px;
+			height: 70px;
+			line-height: 70px;
+			display: block;
+		}
+		.heart_7 {
+			position: absolute;
+			top: 660px;
+			left: 620px;
+			height: 70px;
+			line-height: 70px;
+			display: block;
+		}
+		.heart_8 {
+			position: absolute;
+			top: 740px;
+			left: 720px;
+			height: 70px;
+			line-height: 70px;
+			display: block;
+		}
+		.heart_9 {
+			position: absolute;
+			top: 820px;
+			left: 820px;
+			height: 70px;
+			line-height: 70px;
+			display: block;
+		}
+		.heart_10 {
+			position: absolute;
+			top: 880px;
+			left: 895px;
+			height: 70px;
+			line-height: 70px;
+			display: block;
+		}
+		.heart_5 .f1.font_shitYellow2.top {
+			line-height: 30px;
+		}
+		.heart_6 .f1.font_shitYellow2.down {
+			line-height: 120px;
+		}
+		.heart_6 .f5.font_blue.top {
+			line-height: 70px;
+		}
+		/* 自定义样式 */
+		.heart_0 .f3 {
+			width: 128px;
+		}
+		.heart_4 .font_red {
+			font-size: 39px;
+		}
+		.heart_4 .font_yellowish {
+			line-height: 80px;
+			width: 170px;
+		}
+		.heart_4 .font_orange {
+			line-height: 40px;
+		}
+		.heart_3>p {
+			font-size: 40px;
+			width: 160px;
+		}
+		.heart_3 .font_orange {
+			line-height: 80px;
+			font-size: 36px;
+		}
+		.heart_3 .font_yellow {
+			font-size: 34px;
+			line-height: 50px;
+		}
+		.heart_3 p:nth-child(3) {
+			margin-right: 72px;
+		}
+		.heart_2>p {
+			font-size: 36px;
+			width: 220px;
+		}
+		.heart_2 p:nth-child(2) {
+			margin-right: 232px;
+		}
+		.heart_2 .font_yellowish_green {
+			width: 140px;
+			line-height: 80px;
+			font-size: 32px;
+		}
+		.heart_2 .font_dark_red {
+			font-size: 42px;
+		}
+		.heart_1>p {
+			font-size: 30px;
+			width: 330px;
+		}
+		.heart_1>p:first-child {
+			margin-right: 170px;
+		}
+		.rotate {
+			-webkit-animation: flip 3s .5s ease both infinite;
+			-moz-animation: flip 1s .2s ease both infinite;
+		}
+		@-webkit-keyframes flip {
+			0% {
+				-webkit-transform: perspective(800px) rotateY(0);
+				-webkit-animation-timing-function: ease-out
+			}
+			40% {
+				-webkit-transform: perspective(800px) translateZ(150px) rotateY(170deg);
+				-webkit-animation-timing-function: ease-out
+			}
+			50% {
+				-webkit-transform: perspective(800px) translateZ(150px) rotateY(190deg) scale(1);
+				-webkit-animation-timing-function: ease-in
+			}
+			80% {
+				-webkit-transform: perspective(800px) rotateY(360deg) scale(.95);
+				-webkit-animation-timing-function: ease-in
+			}
+			100% {
+				-webkit-transform: perspective(800px) scale(1);
+				-webkit-animation-timing-function: ease-in
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<div id="heart" class="">
+		<div class="heart_0">
+			<p class="f5 font_red">技术</p>
+			<p class="f3 font_yellow w4">悲剧国内</p>
+			<p class="f5 font_sky_blue w4">用户体验</p>
+			<p class="f3 font_yellow w4">网页统计</p>
+			<p class="f5 font_red">视觉</p>
+		</div>
+		<div class="heart_4">
+			<p class="f3 font_red">青春</p>
+			<p class="f3 font_orange">童年回忆</p>
+			<p class="f3 font_yellowish">产品</p>
+			<p class="f3 font_yellowish">记者</p>
+			<p class="f3 font_orange">科学预测</p>
+			<p class="f3 font_red">市场</p>
+		</div>
+		<div class="heart_3">
+			<p class="f3 font_yellow">星座</p>
+			<p class="f3 font_rosiness">工程师</p>
+			<p class="f3 font_orange">狂欢</p>
+			<p class="f3 font_orange">视觉</p>
+			<p class="f3 font_rosiness">程序员</p>
+			<p class="f3 font_yellow">残酷</p>
+		</div>
+		<div class="heart_2">
+			<p class="f3 font_dark_red">工程师</p>
+			<p class="f3 font_yellowish_green">狂欢</p>
+			<p class="f3 font_yellowish_green">视觉</p>
+			<p class="f3 font_dark_red">程序员</p>
+		</div>
+		<div class="heart_1">
+			<p class="f3 font_sky_blue">星座</p>
+			<p class="f3 font_sky_blue">视觉</p>
+		</div>
+		<div class="heart_5">
+			<p class="f3 font_purple">旅游</p>
+			<p class="f1 font_red">开发</p>
+			<p class="f3 font_shitYellow">孩子</p>
+			<p class="f1 font_shitYellow top">逻辑</p>
+			<p class="f3 font_shitYellow">软件</p>
+			<p class="f1 font_red">动物</p>
+			<p class="f3 font_purple">科学</p>
+		</div>
+
+		<div class="heart_6">
+			<p class="f3 font_red">小时候</p>
+			<p class="f1 font_shitYellow2 down">品牌</p>
+			<p class="f5 font_blue top">教程</p>
+			<p class="f1 font_shitYellow2 down">电影</p>
+			<p class="f3 font_red">互联网</p>
+		</div>
+
+		<div class="heart_7">
+			<p class="f2 font_blue2">技术</p>
+			<p class="f4 font_blue">形象</p>
+			<p class="f4 font_blue ">成都</p>
+			<p class="f2 font_blue2">梦想</p>
+		</div>
+
+		<div class="heart_8">
+			<p class="f2 font_red">素描</p>
+			<p class="f4 font_red">科技</p>
+			<p class="f2 font_red">水彩</p>
+		</div>
+
+		<div class="heart_9">
+			<p class="f2 font_red">能力</p>
+			<p class="f2 font_red">想象</p>
+		</div>
+
+		<div class="heart_10">
+			<p class="f1 font_violet">操作</p>
+		</div>
+	</div>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/userSound.js"></script>
+</body>
+</html>

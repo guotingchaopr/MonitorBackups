@@ -1,6 +1,6 @@
 (function (global) {
 	var _window = global,
-		url = "http://127.0.0.1/admin/getDataByMddCodeProxy.json";
+		url = "http://10.63.68.20/admin/getDataByMddCodeProxy.json";
 
 
 	//时间

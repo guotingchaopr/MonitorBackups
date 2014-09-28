@@ -1,0 +1,221 @@
+/***  目标服务  ***/
+	html,
+		body {
+			margin: 0;
+			padding: 0;
+		}
+		body {
+			width: 1900px;
+			height: 980px;
+			font-size: 12px;
+			font-family: "微软雅黑", cursive, monospace;
+			background-image: url("../images/bg.png");
+			-webkit-transform: translate3d(0, 0, 0);
+			transition: 1.5s;
+		}
+		.main {
+			display: block;
+			width: auto;
+			height: 100%;
+			margin: 45px;
+		}
+		.main .header {
+			width: 100%;
+			letter-spacing: 15px;
+		}
+		.main .header h1 {
+			color: white;
+			font-weight: normal;
+			font-size: 75px;
+			margin: 0;
+		}
+		.main .header h1,
+		.main .header b {
+			vertical-align: top;
+		}
+		.main .header img {
+			margin-right: 15px;
+		}
+		#columPic {
+			width: 55%;
+			height: 720px;
+			float: left;
+		}
+		#valuesInfo {
+			width: 35%;
+			height: 80%;
+			float: right;
+		}
+		#valuesInfo .ServerCentage {
+			width: 100%;
+		}
+		#valuesInfo .ServerCentage .serverUI {
+			margin: 0;
+			padding: 0;
+			width: 30%;
+			float: left;
+		}
+		#valuesInfo .ServerCentage .serverUI img {
+			padding: 30%;
+		}
+		#valuesInfo .ServerCentage .centageInfo {
+			float: left;
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			width: 87%;
+		}
+		#valuesInfo .ServerCentage .centageInfo li {
+			font-size: 40px;
+			color: #FFF;
+			margin-bottom: 35px;
+			letter-spacing: 3.5px;
+		}
+		#valuesInfo .ServerCentage .centageInfo li .active {
+			color: #99D571;
+		}
+		#valuesInfo .ServerCentage .centageInfo li .serverName {
+			float: right;
+			width: 320px;
+			font-size: 42px;
+			text-align: left;
+		}
+		#valuesInfo .ServerCentage .centageInfo li .serverValue {
+			width: 110px;
+			letter-spacing: 3px;
+		}
+		#valuesInfo .ServerCentage .centageInfo li img {
+			position: absolute;
+			width: 395px;
+			right: 125px;
+		}
+		#valuesInfo #container{
+			clear: both;
+			float: left;
+			height: 560px;
+			width: 560px;
+			margin-left: 35px;
+			border: 5px solid #2796c6;
+			border-radius: 50%;
+		}
+		#valuesInfo  .arrows{
+			width: 0;
+			height: 0;
+			clear: both;
+			float: left;
+			display: block;
+			position: relative;
+			top: 380px;
+			transform: rotate(-14deg);
+			right: 40px;
+			z-index: -999;
+			border-top: 35px solid transparent;
+			border-right: 85px solid #2796c6;
+			border-bottom: 35px solid transparent;
+		}
+		.count{clear: both; width: 100%;display: block;}
+		.count .countName{float: left;font-size: 45px;text-align: center;margin:0 40px;color: white;font-weight: bold;}
+		.count .countName p {margin: 0;padding: 0;}
+		.count .digit-container{display: inline-block;margin-left: 36px;}
+		.count .digit{
+			font-size: 70px; border: 1px solid #7B7B87; border-radius: 6px;width:69px; font-weight: 900;
+			line-height: 106px; text-align: center;overflow: hidden;color: #cff5f5;
+			background-color: #191C2B;height: 106px;display: inline-block; margin-left: 22px;
+		}
+		.count .digit div{position: relative;}
+		.highcharts-data-labels>div>span{text-align:center;}
+		.highcharts-data-labels>div .custom-label{color:#FFFFFF;position: relative;top：-30px;line-height:30px; font-size:30px;font-weight: bold;padding: 0; margin: 0;}
+
+
+/**** 目标中心 ****/
+.centerMain{
+	width: 90%;
+	height: 90%;
+	margin: 3%;
+}
+.centerMain .header{
+	width: 100%;
+	height: 20%;
+}
+
+.centerMain .header .headerTitle{
+	color: white;
+	margin-bottom: 50px;
+	font-size: 70px;
+	letter-spacing: 20px;
+}
+.centerMain .header .headerTitle span{
+	font-size: 22px;
+	letter-spacing: 5px;
+}
+.centerMain .header .headerTitle i{
+	display: inline-block;
+	width: 85px;
+	height: 30px;
+	vertical-align: sub;
+	margin-left: 10px;
+}
+.centerMain .header .headerTitle .hot{
+	background: #eccc6a;
+}
+
+.centerMain .header .headerTitle .online{
+	background: #d2a825;
+}
+
+.centerMain .header ul{
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	text-align: center;
+}
+.centerMain .header ul li{
+	float: left;
+	display: inline;
+	width: 33%;
+	height: 200px;
+}
+
+
+.centerMain .header ul li p{
+ 	font-size: 32px;
+	color: white;
+	position: relative;
+	font-weight: normal;
+	top: -135px;
+	left: 70px;
+}
+
+.centerMain .header ul li img{
+	height: 145px;
+}
+
+
+.centerMain .header ul li p span{
+	display: block;
+	line-height: 60px;
+	letter-spacing: 8px;
+}
+
+.centerMain .header ul li p span.title{
+	color: #dfdbd5;
+}
+
+.centerMain .header ul li p span.value{
+	color: #fdee4c;
+}
+.centerMain .header ul li p span.value i{
+	font-size: 40px;
+	font-style: normal;
+	padding: 0 5px;
+}
+
+.centerMain .histogram{
+	width: 95%;
+	height: 500px;
+	clear: both;
+	margin-top: 240px;
+	position: absolute;
+}
+

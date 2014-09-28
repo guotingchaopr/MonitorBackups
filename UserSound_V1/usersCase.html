@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="edge" />
+		<title>服务大屏</title>
+		<link charset="utf-8" rel="stylesheet" href="https://a.alipayobjects.com/??knight/bizdev/2.0.4/bizdev.css">
+		<style>
+			html, body {
+				height: 100%;
+			}
+			body{
+				font-family: "Microsoft YaHei",'SimSun','Lato', Calibri, Arial, sans-serif;
+				font-size: 14px;
+				color: #fff;
+				background-color: #45223B;
+				overflow: hidden;
+				width: 1920px;
+				height: 1080px;
+			}
+			#pt-page-1{
+				width: 100%;height: 100%;
+				background-image: url('images/用户体验反馈.png');
+			}
+			.dim_name{
+				font-size: 56px;
+				color: #D280CD;
+				height: 300px;
+				line-height: 300px;
+				text-align: center;
+				position: relative;
+				top: 180px;
+				letter-spacing: 12px;
+			}
+			.dim_value{
+				height: 320px;
+				padding-left: 80px;
+				line-height: 320px;
+				font-size: 320px;
+				background: -webkit-linear-gradient(#F8DB60, #F3BD35);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				text-align: center;
+				position: relative;
+				top: 160px;
+				letter-spacing: 18px;
+				/*text-shadow: 1px 1px rgba(240, 203, 46,0.6),2px 2px rgba(240, 203, 46, 0.6),
+						3px 3px rgba(240, 203, 46,0.6),4px 4px rgba(240, 203, 46, 0.6),
+						5px 5px rgba(240, 203, 46,0.6),6px 6px rgba(240, 203, 46, 0.6); */
+			}
+			.dim_value span{
+				font-size: 164px;
+				position: relative;
+				top: -10px;
+				color: white;
+				-webkit-text-fill-color: white;
+				margin-left: 60px;
+			}
+			#pt-page-2{background-color: #eaeaea;background-image: url('images/用户语音反馈.png');width: 100%;height: 100%;}
+			#table-container{position: relative;top: 190px;color: #a2e8ff;font-size: 40px;overflow: hidden;}
+			#table-container table tr td{border: none;padding:0;line-height: 89px;text-align: center;}
+			#table-container table tr td:first-child{padding-left: 150px;text-align: left;}
+			#table-container table tr td:nth-child(2){color:#f875bc;}
+			.textover {
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+			}
+			.col-1570{width: 1420px;}
+
+			/* Standard syntax */
+			@-webkit-keyframes mymove {
+				from {top: 190px;}
+				to {top: 280px;}
+			}
+
+			/**/
+			.pt-perspective {
+				position: relative;
+				width: 100%;
+				height: 100%;
+				-webkit-perspective: 1200px;
+				-moz-perspective: 1200px;
+				perspective: 1200px;
+			}
+			.pt-page {
+				width: 100%;
+				height: 100%;
+				background: #45223B;
+				position: absolute;
+				top: 0;
+				left: 0;
+				visibility: hidden;
+				overflow: hidden;
+				-webkit-backface-visibility: hidden;
+				-moz-backface-visibility: hidden;
+				backface-visibility: hidden;
+				-webkit-transform: translate3d(0, 0, 0);
+				-moz-transform: translate3d(0, 0, 0);
+				transform: translate3d(0, 0, 0);
+				-webkit-transform-style: preserve-3d;
+				-moz-transform-style: preserve-3d;
+				transform-style: preserve-3d;
+			}
+			.pt-page-current {
+				visibility: visible;
+				z-index: 1;
+			}
+
+			#pt-page-3{
+				background-image: url("images/userSound.png");
+			}
+
+			.value-moveDown{
+				-webkit-animation: moveToDown 1s ease-out .8s both;
+				-moz-animation: moveToDown 1s ease-out .8s both;
+				animation: moveToDown 1s ease-out .8s both;
+			}
+
+			.pt-page-moveToLeft {
+				-webkit-animation: moveToLeft .7s ease-in-out both;
+				-moz-animation: moveToLeft .7s ease-in-out both;
+				animation: moveToLeft .7s ease-in-out both;
+			}
+
+			.pt-page-moveFromLeft {
+				-webkit-animation: moveFromLeft .7s ease-in-out both;
+				-moz-animation: moveFromLeft .7s ease-in-out both;
+				animation: moveFromLeft .7s ease-in-out both;
+			}
+
+			.pt-page-moveToRight {
+				-webkit-animation: moveToRight .7s ease-in-out both;
+				-moz-animation: moveToRight .7s ease-in-out both;
+				animation: moveToRight .7s ease-in-out both;
+			}
+
+			.pt-page-moveFromRight {
+				-webkit-animation: moveFromRight .7s ease-in-out both;
+				-moz-animation: moveFromRight .7s ease-in-out both;
+				animation: moveFromRight .7s ease-in-out both;
+			}
+			#heart {
+				display: block;
+				width: 100%;
+				height: 100%;
+				margin: 0;
+				padding: 0;
+				transition: 0.4s;
+			}
+			#heart>div {
+				position: absolute;
+			}
+			div>p {
+				float: left;
+				text-align: center;
+				margin: 0;
+				padding: 0;
+			}
+			.f5 {
+				width: 312px;
+				height: 100px;
+				line-height: 100px;
+				font-size: 78px;
+			}
+			.f4 {
+				width: 200px;
+				height: 100px;
+				line-height: 100px;
+				font-size: 60px;
+			}
+			.f3 {
+				font-size: 45px;
+				width: 188px;
+				height: 60px;
+				line-height: 60px;
+			}
+			.f2 {
+				font-size: 50px;
+				width: 125px;
+			}
+			.f1 {
+				font-size: 32px;
+				width: 110px;
+				height: 60px;
+			}
+			/*** color ***/
+			.font_red {
+				color: #ea1c5b;
+			}
+			.font_yellow {
+				color: #e2da01;
+			}
+			.font_purple {
+				color: #ea1ca8;
+			}
+			.font_sky_blue {
+				color: #1ef5e8;
+			}
+			.font_orange {
+				color: #cb7f12;
+			}
+			.font_shitYellow {
+				color: #a9a414;
+			}
+			.font_shitYellow2 {
+				color: #cd8a16;
+			}
+			.font_blue {
+				color: #1c78ea;
+			}
+			.font_blue2 {
+				color: #1e75e4;
+			}
+			.font_violet {
+				color: #5041be;
+			}
+			.font_dark_red {
+				color: #ea1c5b;
+			}
+			.font_yellowish {
+				color: #b6b515;
+			}
+			.font_rosiness {
+				color: #1d7b11;
+			}
+			.font_yellowish_green {
+				color: #3b8712;
+			}
+			.font_purple_red {
+				color: #d81d57;
+			}
+			/***  position ***/
+			.heart_0 {
+				top: 420px;
+				left: 340px;
+			}
+			.heart_4 {
+				top: 360px;
+				left: 390px;
+			}
+			.heart_3 {
+				top: 300px;
+				left: 420px;
+			}
+			.heart_2 {
+				top: 245px;
+				left: 470px;
+			}
+			.heart_1 {
+				top: 200px;
+				left: 520px;
+			}
+			.heart_5 {
+				position: absolute;
+				top: 525px;
+				left: 415px;
+				height: 70px;
+				line-height: 70px;
+				display: block;
+			}
+			.heart_6 {
+				position: absolute;
+				top: 585px;
+				left: 495px;
+				height: 70px;
+				line-height: 70px;
+				display: block;
+			}
+			.heart_7 {
+				position: absolute;
+				top: 660px;
+				left: 620px;
+				height: 70px;
+				line-height: 70px;
+				display: block;
+			}
+			.heart_8 {
+				position: absolute;
+				top: 740px;
+				left: 720px;
+				height: 70px;
+				line-height: 70px;
+				display: block;
+			}
+			.heart_9 {
+				position: absolute;
+				top: 820px;
+				left: 820px;
+				height: 70px;
+				line-height: 70px;
+				display: block;
+			}
+			.heart_10 {
+				position: absolute;
+				top: 880px;
+				left: 895px;
+				height: 70px;
+				line-height: 70px;
+				display: block;
+			}
+			.heart_5 .f1.font_shitYellow2.top {
+				line-height: 30px;
+			}
+			.heart_6 .f1.font_shitYellow2.down {
+				line-height: 120px;
+			}
+			.heart_6 .f5.font_blue.top {
+				line-height: 70px;
+			}
+			/* 自定义样式 */
+			.heart_0 .f3 {
+				width: 128px;
+			}
+			.heart_4 .font_red {
+				font-size: 39px;
+			}
+			.heart_4 .font_yellowish {
+				line-height: 80px;
+				width: 170px;
+			}
+			.heart_4 .font_orange {
+				line-height: 40px;
+			}
+			.heart_3>p {
+				font-size: 40px;
+				width: 160px;
+			}
+			.heart_3 .font_orange {
+				line-height: 80px;
+				font-size: 36px;
+			}
+			.heart_3 .font_yellow {
+				font-size: 34px;
+				line-height: 50px;
+			}
+			.heart_3 p:nth-child(3) {
+				margin-right: 72px;
+			}
+			.heart_2>p {
+				font-size: 36px;
+				width: 220px;
+			}
+			.heart_2 p:nth-child(2) {
+				margin-right: 232px;
+			}
+			.heart_2 .font_yellowish_green {
+				width: 140px;
+				line-height: 80px;
+				font-size: 32px;
+			}
+			.heart_2 .font_dark_red {
+				font-size: 42px;
+			}
+			.heart_1>p {
+				font-size: 30px;
+				width: 330px;
+			}
+			.heart_1>p:first-child {
+				margin-right: 170px;
+			}
+
+
+			/*************************** keyframes ************************/
+			/* move from / to  */
+
+			@-webkit-keyframes moveToLeft {
+				to { -webkit-transform: translateX(-100%); }
+			}
+			@-moz-keyframes moveToLeft {
+				to { -moz-transform: translateX(-100%); }
+			}
+			@keyframes moveToLeft {
+				to { transform: translateX(-100%); }
+			}
+
+			@-webkit-keyframes moveFromLeft {
+				from { -webkit-transform: translateX(-100%); }
+			}
+			@-moz-keyframes moveFromLeft {
+				from { -moz-transform: translateX(-100%); }
+			}
+			@keyframes moveFromLeft {
+				from { transform: translateX(-100%); }
+			}
+
+			@-webkit-keyframes moveToRight {
+				to { -webkit-transform: translateX(100%); }
+			}
+			@-moz-keyframes moveToRight {
+				to { -moz-transform: translateX(100%); }
+			}
+			@keyframes moveToRight {
+				to { transform: translateX(100%); }
+			}
+
+			@-webkit-keyframes moveFromRight {
+				from { -webkit-transform: translateX(100%); }
+			}
+			@-moz-keyframes moveFromRight {
+				from { -moz-transform: translateX(100%); }
+			}
+			@keyframes moveFromRight {
+				from { transform: translateX(100%); }
+			}
+			@-webkit-keyframes moveToDown{
+				0% {
+					top:-45px;
+					-webkit-transform: scale(0.4);
+				}
+				30%{
+					top:240px;
+					-webkit-transform: scale(0.4, 0.3);
+				}
+				44%{
+					top:155px;
+					-webkit-transform: scale(0.4);
+				}
+				58%{
+					top:240px;
+					-webkit-transform: scale(0.4, 0.3.2);
+				}
+				65%{
+					top:212px;
+					-webkit-transform: scale(0.4);
+				}
+				72%{
+					top:240px;
+					-webkit-transform: scale(0.4, 0.3.6);
+				}
+				76%{
+					top:232px;
+					-webkit-transform: scale(0.4);
+				}
+				78%{
+					top:240px;
+					-webkit-transform: scale(0.4) ;
+				}
+				100% {
+					top:160px;
+					-webkit-transform: scale(1) ;
+					}
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div id="pt-main" class="pt-perspective">
+			<!-- 第1个页面 -->
+			<div id="pt-page-1" class="pt-page pt-page-1 pt-page-current">
+			   <div class="dim_name">热线最长等待时长</div>
+			   <div class="dim_value value-moveDown"><span></span></div>
+			</div>
+			<!-- 第1个页面 -->
+
+			<!-- 第2个页面 -->
+			<div id="pt-page-2" class="pt-page pt-page-2">
+				<div id="table-container">
+						<table class="table">
+							<colgroup>
+								<col width="82%">
+								<col width="8%">
+								<col width="10%">
+							</colgroup>
+							<tbody>
+								 <tr><td></td><td></td><td><img src="" alt=""></td></tr>
+								 <tr><td></td><td></td><td><img src="" alt=""></td></tr>
+								 <tr><td></td><td></td><td><img src="" alt=""></td></tr>
+								 <tr><td></td><td></td><td><img src="" alt=""></td></tr>
+								 <tr><td></td><td></td><td><img src="" alt=""></td></tr>
+								 <tr><td></td><td></td><td><img src="" alt=""></td></tr>
+								 <tr><td></td><td></td><td><img src="" alt=""></td></tr>
+								 <tr><td></td><td></td><td><img src="" alt=""></td></tr>
+								 <tr><td></td><td></td><td><img src="" alt=""></td></tr>
+								 <tr><td></td><td></td><td><img src="" alt=""></td></tr>
+							</tbody>
+						</table>
+				</div>
+			</div>
+			<!-- 第2个页面 -->
+
+			<!-- 第3个页面 -->
+			<div id="pt-page-3" class="pt-page pt-page-3">
+			   <div id="heart" class="">
+					<div class="heart_0">
+						<p class="f5 font_red">技术</p>
+						<p class="f3 font_yellow w4">悲剧国内</p>
+						<p class="f5 font_sky_blue w4">用户体验</p>
+						<p class="f3 font_yellow w4">网页统计</p>
+						<p class="f5 font_red">视觉</p>
+					</div>
+					<div class="heart_4">
+						<p class="f3 font_red">青春</p>
+						<p class="f3 font_orange">童年回忆</p>
+						<p class="f3 font_yellowish">产品</p>
+						<p class="f3 font_yellowish">记者</p>
+						<p class="f3 font_orange">科学预测</p>
+						<p class="f3 font_red">市场</p>
+					</div>
+					<div class="heart_3">
+						<p class="f3 font_yellow">星座</p>
+						<p class="f3 font_rosiness">工程师</p>
+						<p class="f3 font_orange">狂欢</p>
+						<p class="f3 font_orange">视觉</p>
+						<p class="f3 font_rosiness">程序员</p>
+						<p class="f3 font_yellow">残酷</p>
+					</div>
+					<div class="heart_2">
+						<p class="f3 font_dark_red">工程师</p>
+						<p class="f3 font_yellowish_green">狂欢</p>
+						<p class="f3 font_yellowish_green">视觉</p>
+						<p class="f3 font_dark_red">程序员</p>
+					</div>
+					<div class="heart_1">
+						<p class="f3 font_sky_blue">星座</p>
+						<p class="f3 font_sky_blue">视觉</p>
+					</div>
+					<div class="heart_5">
+						<p class="f3 font_purple">旅游</p>
+						<p class="f1 font_red">开发</p>
+						<p class="f3 font_shitYellow">孩子</p>
+						<p class="f1 font_shitYellow top">逻辑</p>
+						<p class="f3 font_shitYellow">软件</p>
+						<p class="f1 font_red">动物</p>
+						<p class="f3 font_purple">科学</p>
+					</div>
+
+					<div class="heart_6">
+						<p class="f3 font_red">小时候</p>
+						<p class="f1 font_shitYellow2 down">品牌</p>
+						<p class="f5 font_blue top">教程</p>
+						<p class="f1 font_shitYellow2 down">电影</p>
+						<p class="f3 font_red">互联网</p>
+					</div>
+
+					<div class="heart_7">
+						<p class="f2 font_blue2">技术</p>
+						<p class="f4 font_blue">形象</p>
+						<p class="f4 font_blue ">成都</p>
+						<p class="f2 font_blue2">梦想</p>
+					</div>
+
+					<div class="heart_8">
+						<p class="f2 font_red">素描</p>
+						<p class="f4 font_red">科技</p>
+						<p class="f2 font_red">水彩</p>
+					</div>
+
+					<div class="heart_9">
+						<p class="f2 font_red">能力</p>
+						<p class="f2 font_red">想象</p>
+					</div>
+
+					<div class="heart_10">
+						<p class="f1 font_violet">操作</p>
+					</div>
+				</div>
+			</div>
+			<!-- 第3个页面 -->
+		</div>
+
+		<script charset="utf-8" src="js/jquery.min.js"></script>
+		<script>
+			//全局变量
+			var intervalTime = 8,  //切换屏幕间隔秒数
+				reqCount = 0, //请求次数统计
+				serverUrl = 'http://127.0.0.1/admin/getDataByMddCodeProxy.json?codes=',  //请求地址
+				reqTime = (new Date()).getTime() - 60000,
+				pageElements = document.getElementsByClassName('pt-page'),
+				pagesCount = pageElements.length;
+
+			(function(){
+				/*  变量定义 */
+				var current = 0,  //当前页index
+					outClass = '', inClass = '',  //动画类名
+					currOriClass = '', nextOriClass = '',
+					endCurrPage = false,       //动画状态判断
+					endNextPage = false,
+					animEndEventName = 'webkitAnimationEnd',        //结束动画的事件名称
+					isToLeft = false,   //页面切换方向控制（向左or向右）
+					tableInterId;    //表格页面每行刷新interval ID
+
+				var imgs = ['上升','持平','下降'];
+				var contents = ['支付宝也搞团购','95188','客服中心','集团中心','老马不吃草','余额宝利息高','退红包','天猫发红包','收银台无法打开','退款进度查询','双11活动', '抽奖活动','阿里巴巴上市集团，缄默期间，严谨私自接受媒体访问或访谈，一切公关业务交予商务公关部门处理，致辞通知！谢谢！','自助机器人','hosts','余额宝发红包','马云成为中国首富','马云个人资产超1500亿'];   //模拟的数据
+
+				/* 公共函数定义 */
+				var util = {};
+				util.addClass = function(el, className){
+					var n = el.className;
+					el.className = n ? n + ' ' + className : className;
+				};
+				util.removeClass = function(el, className){
+					var arr = el.className.split(' ');
+					for(var i = 0, len = arr.length; i < len; i++){
+						if(arr[i] == className){arr.splice(i, 1);}
+					}
+					el.className = arr.join(' ');
+				};
+				util.hasClass = function(el, className){
+					var arr = el.className.split(' ');
+					for(var i = 0, len = arr.length; i < len; i++){
+						if(arr[i] == className){return true;}
+					}
+					return false;
+				};
+
+				//生成随机数
+				var random=function(t1,t2,t3){//t1为下限，t2为上限，t3为需要保留的小数位
+					function isNum(n){
+						return /^\d+$/.test(n);
+					}
+					if(!t1 || (! isNum(t1)) ){t1=0;}
+					if(!t2 || (! isNum(t2)) ){t2=1;}
+					if(!t3 || (! isNum(t3)) ){t3=0;}
+					t3 = t3>15?15:t3; // 小数位不能大于15位
+					var ra = Math.random() * (t2-t1)+t1,du=Math.pow(10,t3);
+					ra = Math.round(ra * du)/du;
+
+					return ra;
+				}
+
+				//生成json URL函数
+				function getRequestUrl(code, qf, time){
+					return serverUrl + code + '&qualify=' + qf + '&time=' + time + '&callback=?';
+				}
+
+				//转换json数据结构 --- 返回包含各数据值的对象
+				function dataPro(data){
+					var result = [], value;
+					if(!data || !data.length) return false;
+					for(var i = 0, l = data.length; i < l; i++){
+						for(var value in data[i].qualifyMap){
+							value = data[i].qualifyMap[value] - 0;
+						}
+						result.push(value);
+					}
+					return result;
+				}
+
+				//页面切换函数
+				function pageChangeFunc(){
+					var currPage = pageElements[current];
+					var curArr = currPage.attributes['class'].value.split(' ');
+					currOriClass = ''; nextOriClass = '';
+					if(curArr.length >=4) curArr = curArr.slice(0, 3);
+					if(curArr.length>=3 && curArr[2].indexOf('current')>=0) curArr.splice(2);
+					currOriClass = curArr.join(' ');
+
+					if( current < pagesCount - 1 ) { ++current;}
+					else { current = 0; }
+
+					var nextPage = pageElements[current];
+					nextOriClass = nextPage.attributes['class'].value;
+					if(!util.hasClass(nextPage, 'pt-page-current'))
+						util.addClass(nextPage, 'pt-page-current' );
+
+					if(pagesCount == 1) return;
+
+					//向左向右控制
+					if(isToLeft){
+						outClass = 'pt-page-moveToLeft';
+						inClass = 'pt-page-moveFromRight';
+					}else{
+						outClass = 'pt-page-moveToRight';
+						inClass = 'pt-page-moveFromLeft';
+					}
+
+					if(!util.hasClass(nextPage, inClass))
+						util.addClass(nextPage, inClass);
+
+					if(!util.hasClass(currPage, outClass))
+						util.addClass(currPage, outClass);
+
+					//动画结束事件处理函数
+					setTimeout(function(){
+						onEndAnimation(currPage, nextPage );
+					}, 700);
+				}
+
+				function onEndAnimation( $outpage, $inpage ) {
+					$outpage.attributes['class'].value = currOriClass;
+					$inpage.attributes['class'].value = nextOriClass + ' pt-page-current';
+				}
+
+				//页面切换
+				setInterval(pageChangeFunc, 1000*intervalTime);
+
+				/******************/
+				/*  数值页面代码  */
+				/******************/
+				var codes = [
+					'MD_RGFW_REXIAN_ZIYING_AverACWTime_DAY'   //最长等待时长code配置
+				];
+				var qfs = [
+					'AverACWTime'	//最长等待时长qf配置
+				];
+
+				jQuery.getJSON(getRequestUrl(codes.join(','), qfs.join(','), (reqTime + reqCount*1000*pagesCount* intervalTime)), function(json){
+					var result = dataPro(json);
+					$('.dim_value').html(result[0].toFixed(2)+'<span>秒</span>');
+
+					setInterval(function(){
+						reqCount++;
+						jQuery.getJSON(getRequestUrl(codes.join(','), qfs.join(','), (reqTime + reqCount*1000*pagesCount* intervalTime)), function(json){
+							var result = dataPro(json);
+							$('.dim_value').html(result[0].toFixed(2)+'<span>秒</span>');
+						});
+						$('.dim_value').addClass('value-moveDown');
+					}, 1000*intervalTime*pagesCount);
+				});
+
+				//去除自由落体的动画类
+				if(!!$('.dim_value')[0]){
+					$('.dim_value')[0].addEventListener('webkitAnimationEnd', function(){
+						$(this).removeClass('value-moveDown');
+					}, false);
+				}
+
+				/******************/
+				/*  表格页面代码  */
+				/******************/
+
+				/**
+			     * 更新类目表格数据
+			     *
+			     * @param content 类目内容信息
+			     * @param value   类目数据值
+			     * @param compare 类目比较趋势
+			     */
+				function animationRise(content, value, compare){
+					$('tbody tr').last().remove();
+					$('<tr><td><div class="textover col-1570">'+content+'</div></td><td>'+value+'%</td><td><img src="images/'+compare+'.png" alt=""></td></tr>').insertBefore($('tr:first')).hide().fadeIn();
+				}
+
+				function tableAnimation(){
+					tableInterId = setInterval(function(){
+						var codes = [
+							'MD_RGFW_REXIAN_ZIYING_AverACWTime_DAY'		//类目code配置
+						];
+						var qfs = [
+							'AverACWTime'	//类目qf配置
+						];
+						jQuery.getJSON(getRequestUrl(codes.join(','), qfs.join(','), (reqTime + reqCount*1000*pagesCount* intervalTime)), function(json){
+							//类目数据接入
+							animationRise(contents[random(0,contents.length - 1,0)], random(0,100,0), imgs[random(0,2,0)]);
+						});
+					}, 1200);
+					setTimeout(function(){
+						clearInterval(tableInterId);
+					}, 1000*intervalTime);   //运行完一个页面时间清理
+				}
+				setTimeout(function(){
+					tableAnimation();
+					setInterval(function(){
+						tableAnimation();
+					}, 1000*intervalTime*pagesCount);
+				}, 1000*intervalTime);  //延迟一个页面时间切换
+			})(window);
+		</script>
+		<script src="js/userSound.js"></script>
+	</body>
+</html>

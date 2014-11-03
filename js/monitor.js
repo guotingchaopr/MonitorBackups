@@ -10,7 +10,7 @@
 			return time;
 		}
 		/***	字段坐标配置		****/
-	var field_config = {
+	/*var field_config = {
 		selfSearchVal: { //自助搜索
 			x: 375,
 			y: 470
@@ -39,7 +39,7 @@
 			x: 1528,
 			y: 150
 		}
-	};
+	};*/
 
 
 
@@ -52,7 +52,9 @@
 		},
 		pc: {
 			x: 490,
-			y: 360
+			y: 360,
+			mdd_code: "MD_CSCHANNEL_REQ_TERMINAL",
+			qualify: "PC"
 		},
 		onlineServer: {
 			x: 770,
@@ -60,11 +62,15 @@
 		},
 		wireless: {
 			x: 1020,
-			y: 360
+			y: 360,
+			mdd_code: "MD_CSCHANNEL_REQ_TERMINAL",
+			qualify: "WS"
 		},
 		countServer: {
 			x: 1210,
-			y: 140
+			y: 140,
+			mdd_code: "MD_CSCHANNEL_REQ_TYPE",
+			qualify: "OPEN"
 		},
 		hotServer: {
 			x: 1350,
@@ -84,19 +90,27 @@
 		},
 		xiaoBaoAccurate: {
 			x: 430,
-			y: 740
+			y: 740,
+			mdd_code: "MD_CSCHANNEL_RESPONSE_SELF_SERVICE",
+			qualify: "ACCURATE_QUESTION"
 		},
 		xiaoBaoRecommend: {
 			x: 430,
-			y: 795
+			y: 795,
+			mdd_code: "MD_CSCHANNEL_RESPONSE_SELF_SERVICE",
+			qualify: "ACCURATE_SUPPORT"
 		},
 		xiaoBaoSearch: {
 			x: 430,
-			y: 860
+			y: 860,
+			mdd_code: "MD_CSCHANNEL_RESPONSE_SELF_SERVICE",
+			qualify: "ROBOT"
 		},
 		selfTurnArtificial: { //自助转人工服务
 			x: 605,
-			y: 840
+			y: 840,
+			mdd_code: 'MD_CSCHANNEL_RESPONSE_SELF_SERVICE_SUM',
+			qualify: 'CSCHANNEL_RESPONSE_SELF_SERVICE '
 		},
 		artificialeService: { //人工客服汇总
 			x: 820,
@@ -210,7 +224,7 @@
 				for (var index in elements) {
 					var key = elements[index];
 					elem = document.getElementById(key);
-					if (node_configs[key].mdd_code && node_configs[key].mdd_code == json[data].mddCode) {
+					if (node_configs[key].mdd_code && ( (node_configs[key].mdd_code == json[data].mddCode)  &&  (json[data].qualifyMap[elem.name]!= undefined) )) {
 						elem.innerText = json[data].qualifyMap[elem.name];
 						console.log("名称： " + json[data].mddCode  + " 值 ：" + json[data].qualifyMap[elem.name]);
 					}
@@ -230,10 +244,12 @@
 			element.name = configs[node].qualify;
 			element.style.position = "absolute";
 			element.style.color = "yellow";
+			element.style.textAlign =  "center";
+			element.style.width =  "80px";
 			element.style.fontSize = "28px";
 			element.style.left = configs[node].x + "px";
 			element.style.top = configs[node].y + "px";
-			element.innerText = "接入中";
+			element.innerText = " 无";
 			element_Fragment.appendChild(element);
 			elements.push(node);
 		}

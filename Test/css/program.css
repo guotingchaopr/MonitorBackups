@@ -1,0 +1,251 @@
+
+@-webkit-keyframes bump {
+ 0% {
+ opacity: 0;
+ left: 535px;
+}
+ 100% {
+ left: -10px;
+ opacity: 0;
+}
+ 10%, 85% {
+ opacity: 1;
+}
+}
+
+
+
+ @-webkit-keyframes spin {
+ 0%, 100% {
+ height: 20px;
+ top: 50px;
+}
+ 50% {
+ height: 100px;
+ top: 0;
+}
+}
+
+body {
+	background: rgba(0, 0, 0, 0.2);
+}
+div.center {
+	text-align: center;
+	margin-top: 40px;
+}
+ul {
+	background-color: rgba(255, 255, 255, 0.4);
+	position: relative;
+	display: block;
+	padding: 0;
+	margin: auto;
+	width: 600px;
+	height: 10px;
+	list-style: none;
+	-webkit-border-radius: 200px;
+	-moz-border-radius: 200px;
+	-ms-border-radius: 200px;
+	-o-border-radius: 200px;
+	border-radius: 200px;
+	border: 5px solid rgba(255, 255, 255, 0.2);
+	margin-top: 100px;
+	-webkit-box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.1);
+	-moz-box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.1);
+}
+ul li {
+	position: absolute;
+	margin-top: -55px;
+}
+ul li:nth-child(1) {
+	-webkit-animation: bump 1.5s infinite;
+
+	-webkit-animation-delay: 0.1s;
+
+	animation-delay: 0.1s;
+}
+ul li:nth-child(1) div {
+	-webkit-border-radius: 22px;
+
+	border-radius: 22px;
+	-webkit-transform-origin: center;
+
+    transform-origin: center;
+	position: absolute;
+	height: 60px;
+	width: 80px;
+	-webkit-animation: spin 0.4s infinite;
+
+	-webkit-animation: spin 0.4s infinite;
+	-webkit-animation-delay: 0.1s;
+
+    animation: spin 0.4s infinite;
+	animation-delay: 0.1s;
+	background-color: rgba(120, 120, 120, 0.3);
+}
+ul li:nth-child(2) {
+	-webkit-animation: bump 1.5s infinite;
+
+	-webkit-animation: bump 1.5s infinite;
+	-webkit-animation-delay: 0.2s;
+
+    animation: bump 1.5s infinite;
+	animation-delay: 0.2s;
+}
+ul li:nth-child(2) div {
+	-webkit-border-radius: 22px;
+	-webkit-transform-origin: center;
+    transform-origin: center;
+	position: absolute;
+	height: 60px;
+	width: 80px;
+	-webkit-animation: spin 0.4s infinite;
+	-webkit-animation-delay: 0.2s;
+    background-color: rgba(120, 0, 0, 0.3);
+}
+ul li:nth-child(3) {
+	-webkit-animation: bump 1.5s infinite;
+	-webkit-animation-delay: 0.3s;
+
+}
+ul li:nth-child(3) div {
+	-webkit-border-radius: 22px;
+	-webkit-transform-origin: center;
+    transform-origin: center;
+	position: absolute;
+	height: 60px;
+	width: 80px;
+	-webkit-animation: spin 0.4s infinite;
+	-webkit-animation-delay: 0.3s;
+    background-color: rgba(120, 120, 0, 0.3);
+}
+ul li:nth-child(4) {
+	-webkit-animation: bump 1.5s infinite;
+	-webkit-animation-delay: 0.4s;
+
+}
+ul li:nth-child(4) div {
+	-webkit-border-radius: 22px;
+	-moz-border-radius: 22px;
+	-ms-border-radius: 22px;
+	-o-border-radius: 22px;
+	border-radius: 22px;
+	-webkit-transform-origin: center;
+    -moz-transform-origin: center;
+    transform-origin: center;
+	position: absolute;
+	height: 60px;
+	width: 80px;
+	-webkit-animation: spin 0.4s infinite;
+	-moz-animation: spin 0.4s infinite;
+	-o-animation: spin 0.4s infinite;
+	-webkit-animation: spin 0.4s infinite;
+	-webkit-animation-delay: 0.4s;
+    -moz-animation: spin 0.4s infinite;
+	-moz-animation-delay: 0.4s;
+    animation: spin 0.4s infinite;
+	animation-delay: 0.4s;
+	background-color: rgba(0, 120, 0, 0.3);
+}
+ul li:nth-child(5) {
+	-webkit-animation: bump 1.5s infinite;
+	-moz-animation: bump 1.5s infinite;
+	-o-animation: bump 1.5s infinite;
+	-webkit-animation: bump 1.5s infinite;
+	-webkit-animation-delay: 0.5s;
+    -moz-animation: bump 1.5s infinite;
+	-moz-animation-delay: 0.5s;
+    animation: bump 1.5s infinite;
+	animation-delay: 0.5s;
+}
+ul li:nth-child(5) div {
+	-webkit-border-radius: 22px;
+	-moz-border-radius: 22px;
+	-ms-border-radius: 22px;
+	-o-border-radius: 22px;
+	border-radius: 22px;
+	-webkit-transform-origin: center;
+    -moz-transform-origin: center;
+    transform-origin: center;
+	position: absolute;
+	height: 60px;
+	width: 80px;
+	-webkit-animation: spin 0.4s infinite;
+	-moz-animation: spin 0.4s infinite;
+	-o-animation: spin 0.4s infinite;
+	-webkit-animation: spin 0.4s infinite;
+	-webkit-animation-delay: 0.5s;
+    -moz-animation: spin 0.4s infinite;
+	-moz-animation-delay: 0.5s;
+    animation: spin 0.4s infinite;
+	animation-delay: 0.5s;
+	background-color: rgba(0, 120, 120, 0.3);
+}
+ul li:nth-child(6) {
+	-webkit-animation: bump 1.5s infinite;
+	-moz-animation: bump 1.5s infinite;
+	-o-animation: bump 1.5s infinite;
+	-webkit-animation: bump 1.5s infinite;
+	-webkit-animation-delay: 0.6s;
+    -moz-animation: bump 1.5s infinite;
+	-moz-animation-delay: 0.6s;
+    animation: bump 1.5s infinite;
+	animation-delay: 0.6s;
+}
+ul li:nth-child(6) div {
+	-webkit-border-radius: 22px;
+	-moz-border-radius: 22px;
+	-ms-border-radius: 22px;
+	-o-border-radius: 22px;
+	border-radius: 22px;
+	-webkit-transform-origin: center;
+    -moz-transform-origin: center;
+    transform-origin: center;
+	position: absolute;
+	height: 60px;
+	width: 80px;
+	-webkit-animation: spin 0.4s infinite;
+	-moz-animation: spin 0.4s infinite;
+	-o-animation: spin 0.4s infinite;
+	-webkit-animation: spin 0.4s infinite;
+	-webkit-animation-delay: 0.6s;
+    -moz-animation: spin 0.4s infinite;
+	-moz-animation-delay: 0.6s;
+    animation: spin 0.4s infinite;
+	animation-delay: 0.6s;
+	background-color: rgba(0, 0, 120, 0.3);
+}
+ul li:nth-child(7) {
+	-webkit-animation: bump 1.5s infinite;
+	-moz-animation: bump 1.5s infinite;
+	-o-animation: bump 1.5s infinite;
+	-webkit-animation: bump 1.5s infinite;
+	-webkit-animation-delay: 0.7s;
+    -moz-animation: bump 1.5s infinite;
+	-moz-animation-delay: 0.7s;
+    animation: bump 1.5s infinite;
+	animation-delay: 0.7s;
+}
+ul li:nth-child(7) div {
+	-webkit-border-radius: 22px;
+	-moz-border-radius: 22px;
+	-ms-border-radius: 22px;
+	-o-border-radius: 22px;
+	border-radius: 22px;
+	-webkit-transform-origin: center;
+    -moz-transform-origin: center;
+    transform-origin: center;
+	position: absolute;
+	height: 60px;
+	width: 80px;
+	-webkit-animation: spin 0.4s infinite;
+	-moz-animation: spin 0.4s infinite;
+	-o-animation: spin 0.4s infinite;
+	-webkit-animation: spin 0.4s infinite;
+	-webkit-animation-delay: 0.7s;
+    -moz-animation: spin 0.4s infinite;
+	-moz-animation-delay: 0.7s;
+    animation: spin 0.4s infinite;
+	animation-delay: 0.7s;
+	background-color: rgba(120, 0, 120, 0.3);
+}

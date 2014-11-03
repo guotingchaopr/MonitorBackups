@@ -1,660 +1,751 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta http-equiv="X-UA-Compatible" content="edge" />
-		<title>服务大屏</title>
-		<link charset="utf-8" rel="stylesheet" href="https://a.alipayobjects.com/??knight/bizdev/2.0.4/bizdev.css">
-		<link href="css/style.css" rel="stylesheet" type="text/css" />
-		<style>
-			html, body {
-				height: 100%;
-			}
-			body{
-				font-family: "Microsoft YaHei",'SimSun','Lato', Calibri, Arial, sans-serif;
-				font-size: 14px;
-				color: #fff;
-				background-color: #45223B;
-				overflow: hidden;
-				width: 1920px;
-				height: 1080px;
-			}
-			.node-main{min-height: 210px;margin: 0 auto;
-				padding: 28px;display: inline-block;font-size: 32px;
-				letter-spacing: 3px;
-				position: absolute;}
-			.node-title{text-align: center;color: white;}
-			.oblique{position: absolute;height: 2px;border:1px solid #867B88;width: 140px;}
-			.cutting-line{
-				border-top: 16px solid #eee;
-			}
-			.nodes-container{
 
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="edge" />
+	<title>服务大屏</title>
+	<link charset="utf-8" rel="stylesheet" href="https://a.alipayobjects.com/??knight/bizdev/2.0.4/bizdev.css">
+	<link href="css/style.css" rel="stylesheet" type="text/css" />
+	<style>
+		html,
+		body {
+			height: 100%;
+		}
+		body {
+			font-family: "Microsoft YaHei", 'SimSun', 'Lato', Calibri, Arial, sans-serif;
+			font-size: 14px;
+			color: #fff;
+			background-color: #45223B;
+			overflow: hidden;
+			width: 1920px;
+			height: 1080px;
+		}
+		.node-main {
+			min-height: 210px;
+			margin: 0 auto;
+			padding: 28px;
+			display: inline-block;
+			font-size: 32px;
+			letter-spacing: 3px;
+			position: absolute;
+		}
+		.node-title {
+			text-align: center;
+			color: white;
+		}
+		.oblique {
+			position: absolute;
+			height: 2px;
+			border: 1px solid #867B88;
+			width: 140px;
+		}
+		.cutting-line {
+			border-top: 16px solid #eee;
+		}
+		.nodes-container {} .drop {
+			background: rgba(255, 255, 255, 0);
+			border: 3px solid #63423E;
+			text-align: center;
+			color: white;
+			border-radius: 0 0 210px 210px;
+			position: relative;
+			margin: 0 auto;
+			width: 320px;
+			height: 160px;
+			overflow: hidden;
+			-webkit-transform-style: preserve-3d;
+			transform-style: preserve-3d;
+		}
+		.drop .drop-level {
+			display: block;
+			position: absolute;
+		}
+		.drop>b {
+			font-weight: normal;
+			color: #B29392;
+			line-height: 160px;
+		}
+		.drop-level {
+			background-color: #F6CC4B;
+			border-radius: 0 0 210px 210px;
+			color: #5E3D3C;
+			left: 0;
+			bottom: 0;
+			width: inherit;
+			height: 0px;
+			line-height: 0px;
+		}
+		.connect-rate {
+			width: 80px;
+			text-align: center;
+			position: absolute;
+			color: #5FC621;
+		}
+		.cd-rx-rate {
+			left: 700px;
+			top: 100px;
+		}
+		.cd-jc-rate,
+		.cd-jr-rate {
+			left: 470px;
+			top: 100px;
+		}
+		.hz-rx-rate {
+			left: 710px;
+			top: 90px;
+		}
+		.hz-zx-rate {
+			left: 700px;
+			top: 90px;
+		}
+		.hz-qz-rate,
+		.hz-aq-rate,
+		.hz-jc-rate {
+			left: 380px;
+			top: 15px;
+		}
+		.hz-ctu-rate {
+			left: 340px;
+			top: 15px;
+		}
+		.hz-zc-rate {
+			left: 340px;
+			top: 20px;
+		}
+		.wb-rx-rate {
+			left: 700px;
+			top: 72px;
+		}
+		.wb-zx-rate {
+			left: 200px;
+			top: 72px;
+		}
+		.wb-ht-rate,
+		.wb-hf-rate,
+		.wb-ws-rate1,
+		.wb-ws-rate2,
+		.wb-ty-rate {
+			left: 340px;
+			top: 17px;
+		}
+		.wb-hf-rate {
+			left: 350px;
+		}
+		.pt-perspective {
+			position: relative;
+			width: 100%;
+			height: 100%;
+			-webkit-perspective: 1200px;
+			-moz-perspective: 1200px;
+			perspective: 1200px;
+		}
+		.pt-page {
+			width: 100%;
+			height: 100%;
+			background: #45223B;
+			position: absolute;
+			top: 0;
+			left: 0;
+			visibility: hidden;
+			overflow: hidden;
+			-webkit-backface-visibility: hidden;
+			-moz-backface-visibility: hidden;
+			backface-visibility: hidden;
+			-webkit-transform: translate3d(0, 0, 0);
+			-moz-transform: translate3d(0, 0, 0);
+			transform: translate3d(0, 0, 0);
+			-webkit-transform-style: preserve-3d;
+			-moz-transform-style: preserve-3d;
+			transform-style: preserve-3d;
+		}
+		.pt-page-2 {
+			background-image: url('images/成都服务中心目前完成_new1.png');
+		}
+		.pt-page-3 {
+			background-image: url('images/杭州服务中心目前完成_new2.png');
+		}
+		.pt-page-4 {
+			background-image: url('images/外包服务中心目前完成_new3.png');
+		}
+		.node-title {
+			color: #DFDBD5;
+			margin-bottom: 12px;
+		}
+		.node-group {
+			font-size: 42px;
+			letter-spacing: 5px;
+		}
+		.node-value {
+			min-width: 120px;
+			text-align: center;
+			color: #F6CC4B;
+			display: inline-block;
+		}
+		.count-value {
+			position: absolute;
+			top: -30px;
+			left: 980px;
+			color: #F6CC4B;
+			font-size: 130px;
+		}
+		.pt-page .col-lg-6 {
+			top: 204px;
+		}
+		.pt-page .col-lg-3 {
+			top: 675px;
+		}
+		.pt-page-2 .row1-left {
+			left: 480px;
+		}
+		.pt-page-2 .row2-left1 {
+			left: 150px;
+		}
+		.pt-page-2 .row2-left2 {
+			left: 1290px;
+		}
+		.pt-page-3 .row1-left {
+			left: -95px;
+		}
+		.pt-page-3 .row1-right {
+			left: 860px;
+		}
+		.pt-page-3 .row2-left1 {
+			left: -40px;
+		}
+		.pt-page-3 .row2-left2 {
+			left: 333px;
+		}
+		.pt-page-3 .row2-right1 {
+			left: 730px;
+		}
+		.pt-page-3 .row2-right2 {
+			left: 1108px;
+		}
+		.pt-page-3 .row2-right3 {
+			left: 1480px;
+		}
+		.pt-page-4 .row1-left {
+			left: 285px;
+		}
+		.pt-page-4 .row1-right {
+			left: 1240px;
+		}
+		.pt-page-4 .row2-left1 {
+			left: -40px;
+		}
+		.pt-page-4 .row2-left2 {
+			left: 333px;
+		}
+		.pt-page-4 .row2-left3 {
+			left: 710px;
+		}
+		.pt-page-4 .row2-left4 {
+			left: 1090px;
+		}
+		.pt-page-4 .row2-right {
+			left: 1480px;
+		}
+		.pt-page-current {
+			visibility: visible;
+			z-index: 1;
+		}
+		.pt-page-moveToLeft {
+			-webkit-animation: moveToLeft .7s ease-in-out both;
+			-moz-animation: moveToLeft .7s ease-in-out both;
+			animation: moveToLeft .7s ease-in-out both;
+		}
+		.pt-page-moveFromLeft {
+			-webkit-animation: moveFromLeft .7s ease-in-out both;
+			-moz-animation: moveFromLeft .7s ease-in-out both;
+			animation: moveFromLeft .7s ease-in-out both;
+		}
+		.pt-page-moveToRight {
+			-webkit-animation: moveToRight .7s ease-in-out both;
+			-moz-animation: moveToRight .7s ease-in-out both;
+			animation: moveToRight .7s ease-in-out both;
+		}
+		.pt-page-moveFromRight {
+			-webkit-animation: moveFromRight .7s ease-in-out both;
+			-moz-animation: moveFromRight .7s ease-in-out both;
+			animation: moveFromRight .7s ease-in-out both;
+		}
+		/*************************** keyframes ************************/
+		/* move from / to  */
+		@-webkit-keyframes moveToLeft {
+			to {
+				-webkit-transform: translateX(-100%);
 			}
+		}
+		@-moz-keyframes moveToLeft {
+			to {
+				-moz-transform: translateX(-100%);
+			}
+		}
+		@keyframes moveToLeft {
+			to {
+				transform: translateX(-100%);
+			}
+		}
+		@-webkit-keyframes moveFromLeft {
+			from {
+				-webkit-transform: translateX(-100%);
+			}
+		}
+		@-moz-keyframes moveFromLeft {
+			from {
+				-moz-transform: translateX(-100%);
+			}
+		}
+		@keyframes moveFromLeft {
+			from {
+				transform: translateX(-100%);
+			}
+		}
+		@-webkit-keyframes moveToRight {
+			to {
+				-webkit-transform: translateX(100%);
+			}
+		}
+		@-moz-keyframes moveToRight {
+			to {
+				-moz-transform: translateX(100%);
+			}
+		}
+		@keyframes moveToRight {
+			to {
+				transform: translateX(100%);
+			}
+		}
+		@-webkit-keyframes moveFromRight {
+			from {
+				-webkit-transform: translateX(100%);
+			}
+		}
+		@-moz-keyframes moveFromRight {
+			from {
+				-moz-transform: translateX(100%);
+			}
+		}
+		@keyframes moveFromRight {
+			from {
+				transform: translateX(100%);
+			}
+		}
+	</style>
+</head>
 
-			.drop {
-				background: rgba(255,255,255,0);
-				border: 3px solid #63423E;
-				text-align: center;
-				color:white;
-				border-radius: 0 0 210px 210px;
-				position: relative;
-				margin: 0 auto;
-				width: 320px;
-				height: 160px;
-				overflow: hidden;
-				-webkit-transform-style: preserve-3d;
-				transform-style: preserve-3d;
-			}
+<body>
 
-			.drop .drop-level {
-				display: block;
-				position: absolute;
-			}
-			.drop>b{
-				font-weight: normal;
-				color: #B29392;
-				line-height: 160px;
-			}
-			.drop-level {
-				background-color: #F6CC4B;
-				border-radius: 0 0 210px 210px;
-				color: #5E3D3C;
-				left: 0;
-				bottom: 0;
-				width: inherit;
-				height: 0px;
-				line-height: 0px;
-			}
-			.connect-rate{
-				width: 80px;
-				text-align: center;
-				position: absolute;
-				color: #5FC621;
-			}
-			.cd-rx-rate{
-				left: 700px;
-				top: 100px;
-			}
-			.cd-jc-rate,.cd-jr-rate{
-				left: 470px;
-				top: 100px;
-			}
-			.hz-rx-rate{
-				left: 710px;
-				top: 90px;
-			}
-			.hz-zx-rate{
-				left: 700px;
-				top: 90px;
-			}
-			.hz-qz-rate,.hz-aq-rate,.hz-jc-rate{
-				left: 380px;
-				top: 15px;
-			}
-			.hz-ctu-rate{
-				left: 340px;
-				top: 15px;
-			}
-			.hz-zc-rate{
-				left: 340px;
-				top: 20px;
-			}
-			.wb-rx-rate{
-				left: 700px;
-				top: 72px;
-			}
-			.wb-zx-rate{
-				left: 200px;
-				top: 72px;
-			}
-			.wb-ht-rate,.wb-hf-rate,.wb-ws-rate1,.wb-ws-rate2,.wb-ty-rate{
-				left: 340px;
-				top: 17px;
-			}
-			.wb-hf-rate{
-				left:350px;
-			}
-			.pt-perspective {
-				position: relative;
-				width: 100%;
-				height: 100%;
-				-webkit-perspective: 1200px;
-				-moz-perspective: 1200px;
-				perspective: 1200px;
-			}
-			.pt-page {
-				width: 100%;
-				height: 100%;
-				background: #45223B;
-				position: absolute;
-				top: 0;
-				left: 0;
-				visibility: hidden;
-				overflow: hidden;
-				-webkit-backface-visibility: hidden;
-				-moz-backface-visibility: hidden;
-				backface-visibility: hidden;
-				-webkit-transform: translate3d(0, 0, 0);
-				-moz-transform: translate3d(0, 0, 0);
-				transform: translate3d(0, 0, 0);
-				-webkit-transform-style: preserve-3d;
-				-moz-transform-style: preserve-3d;
-				transform-style: preserve-3d;
-			}
-			.pt-page-2{
-				background-image: url('images/成都服务中心目前完成_new1.png');
-			}
-			 .pt-page-3{
-				background-image: url('images/杭州服务中心目前完成_new2.png');
-			}
-			 .pt-page-4{
-				background-image: url('images/外包服务中心目前完成_new3.png');
-			}
-			.node-title{
-				color: #DFDBD5;
-				margin-bottom: 12px;
-			}
-			.node-group{
-				font-size: 42px;
-				letter-spacing: 5px;
-			}
-			.node-value{
-				min-width: 120px;
-				text-align: center;
-				color: #F6CC4B;
-				display: inline-block;
-			}
-			.count-value{
-				position: absolute;
-				top: -30px;
-				left: 980px;
-				color: #F6CC4B;
-				font-size: 130px;
-			}
-			.pt-page .col-lg-6{
-				top: 204px;
-			}
-			.pt-page .col-lg-3{
-				top: 675px;
-			}
-			.pt-page-2 .row1-left{
-				left: 480px;
-			}
-			.pt-page-2 .row2-left1{
-				left: 150px;
-			}
-			.pt-page-2 .row2-left2{
-				left: 1290px;
-			}
-			.pt-page-3 .row1-left{
-				left: -95px;
-			}
-			.pt-page-3 .row1-right{
-				left:860px;
-			}
-			.pt-page-3 .row2-left1{
-				left: -40px;
-			}
-			.pt-page-3 .row2-left2{
-				left: 333px;
-			}
-			.pt-page-3 .row2-right1{
-				left: 730px;
-			}
-			.pt-page-3 .row2-right2{
-				left: 1108px;
-			}
-			.pt-page-3 .row2-right3{
-				left: 1480px;
-			}
-			 .pt-page-4 .row1-left{
-				left: 285px;
-			}
-			.pt-page-4 .row1-right{
-				left:1240px;
-			}
-			.pt-page-4 .row2-left1{
-				left: -40px;
-			}
-			.pt-page-4 .row2-left2{
-				left: 333px;
-			}
-			.pt-page-4 .row2-left3{
-				left: 710px;
-			}
-			.pt-page-4 .row2-left4{
-				left: 1090px;
-			}
-			.pt-page-4 .row2-right{
-				left: 1480px;
-			}
-			.pt-page-current {
-				visibility: visible;
-				z-index: 1;
-			}
+	<div id="pt-main" class="pt-perspective">
 
-			.pt-page-moveToLeft {
-				-webkit-animation: moveToLeft .7s ease-in-out both;
-				-moz-animation: moveToLeft .7s ease-in-out both;
-				animation: moveToLeft .7s ease-in-out both;
-			}
-
-			.pt-page-moveFromLeft {
-				-webkit-animation: moveFromLeft .7s ease-in-out both;
-				-moz-animation: moveFromLeft .7s ease-in-out both;
-				animation: moveFromLeft .7s ease-in-out both;
-			}
-
-			.pt-page-moveToRight {
-				-webkit-animation: moveToRight .7s ease-in-out both;
-				-moz-animation: moveToRight .7s ease-in-out both;
-				animation: moveToRight .7s ease-in-out both;
-			}
-
-			.pt-page-moveFromRight {
-				-webkit-animation: moveFromRight .7s ease-in-out both;
-				-moz-animation: moveFromRight .7s ease-in-out both;
-				animation: moveFromRight .7s ease-in-out both;
-			}
-
-			/*************************** keyframes ************************/
-			/* move from / to  */
-
-			@-webkit-keyframes moveToLeft {
-				to { -webkit-transform: translateX(-100%); }
-			}
-			@-moz-keyframes moveToLeft {
-				to { -moz-transform: translateX(-100%); }
-			}
-			@keyframes moveToLeft {
-				to { transform: translateX(-100%); }
-			}
-
-			@-webkit-keyframes moveFromLeft {
-				from { -webkit-transform: translateX(-100%); }
-			}
-			@-moz-keyframes moveFromLeft {
-				from { -moz-transform: translateX(-100%); }
-			}
-			@keyframes moveFromLeft {
-				from { transform: translateX(-100%); }
-			}
-
-			@-webkit-keyframes moveToRight {
-				to { -webkit-transform: translateX(100%); }
-			}
-			@-moz-keyframes moveToRight {
-				to { -moz-transform: translateX(100%); }
-			}
-			@keyframes moveToRight {
-				to { transform: translateX(100%); }
-			}
-
-			@-webkit-keyframes moveFromRight {
-				from { -webkit-transform: translateX(100%); }
-			}
-			@-moz-keyframes moveFromRight {
-				from { -moz-transform: translateX(100%); }
-			}
-			@keyframes moveFromRight {
-				from { transform: translateX(100%); }
-			}
-		</style>
-	</head>
-	<body>
-
-		<div id="pt-main" class="pt-perspective">
-
-			<!-- 第一个页面 -->
-			<div id="pt-page-1" class="pt-page pt-page-1 pt-page-current">
-				<div class="centerMain">
-					<div class="header">
-						<div class="headerTitle">
-							各服务中心目标完成情况
-							<span>热线<i class="hot"></i></span>
-							<span>在线<i class="online"></i></span>
-						</div>
-						<ul>
-							<li>
-								<img  src="images/CD.png"/>
-								<p>
-									<span class="title">成都服务中心</span>
-									<span class="value"><bdi>完成量</bdi>:<i>8066</i></span>
-								</p>
-							</li>
-							<li>
-								<img  src="images/HZ.png"/>
-								<p>
-									<span class="title">杭州服务中心</span>
-									<span class="value"><bdi>完成量</bdi>:<i>5089</i></span>
-								</p>
-							</li>
-							<li>
-								<img  src="images/WB.png"/>
-								<p>
-									<span class="title">外包服务中心</span>
-									<span class="value"><bdi>完成量</bdi>:<i>10426</i></span>
-								</p>
-							</li>
-						</ul>
+		<!-- 第一个页面 -->
+		<div id="pt-page-1" class="pt-page pt-page-1 pt-page-current">
+			<div class="centerMain">
+				<div class="header">
+					<div class="headerTitle">
+						各服务中心目标完成情况
+						<span>热线<i class="hot"></i></span>
+						<span>在线<i class="online"></i></span>
 					</div>
-					<div class="histogram" id="histogram"></div>
+					<ul>
+						<li>
+							<img src="images/CD.png" />
+							<p>
+								<span class="title">成都服务中心</span>
+								<span class="value"><bdi>完成量</bdi>:<i>8066</i></span>
+							</p>
+						</li>
+						<li>
+							<img src="images/HZ.png" />
+							<p>
+								<span class="title">杭州服务中心</span>
+								<span class="value"><bdi>完成量</bdi>:<i>5089</i></span>
+							</p>
+						</li>
+						<li>
+							<img src="images/WB.png" />
+							<p>
+								<span class="title">外包服务中心</span>
+								<span class="value"><bdi>完成量</bdi>:<i>10426</i></span>
+							</p>
+						</li>
+					</ul>
 				</div>
-			 </div>
-			<!-- 第一个页面 -->
-
-			<!-- 第二个页面 -->
-			<div id="pt-page-2" class="pt-page pt-page-2">
-				<!-- 节点容器 -->
-				<div class="count-value"></div>
-
-				<!-- 第一行节点 -->
-				<div class="nodes-container">
-					<div class="node-main col-lg-6 row1-left">
-						<div class="node-title">
-							<span class="node-group">热线服务部</span><br/>
-							<span class="node-target">完成量：</span>
-							<span class="node-value"></span>
-							<div class="connect-rate cd-rx-rate"></div>
-						</div>
-						<div class="drop"><span class="drop-level"></span></div>
-					</div>
-				</div>
-
-				<!-- 第二行节点 -->
-				<div class="nodes-container">
-					<div class="node-main col-lg-3 row2-left1">
-						<div class="node-title">
-							<span class="node-group">基础服务</span><br/>
-							<span class="node-target">完成量：</span>
-							<span class="node-value"></span>
-							<div class="connect-rate cd-jc-rate"></div>
-						</div>
-						<div class="drop"><span class="drop-level"></span></div>
-					</div>
-
-					<div class="node-main col-lg-3 row2-left2">
-						<div class="node-title">
-							<span class="node-group">金融服务</span><br/>
-							<span class="node-target">完成量：</span>
-							<span class="node-value"></span>
-							<div class="connect-rate cd-jr-rate"></div>
-						</div>
-						<div class="drop"><span  class="drop-level"></span></div>
-					</div>
-				</div>
-				<!-- 节点容器 -->
+				<div class="histogram" id="histogram"></div>
 			</div>
-			<!-- 第二个页面 -->
-
-			<!-- 第三个页面 -->
-			<div id="pt-page-3" class="pt-page pt-page-3">
-				 <div class="count-value"></div>
-
-				<!-- 第一行节点 -->
-				 <div class="nodes-container">
-					<div class="node-main col-lg-6 row1-left">
-						<div class="node-title">
-							<span class="node-group">热线服务部</span><br/>
-							<span class="node-target">完成量：</span>
-							<span class="node-value"></span>
-							<div class="connect-rate hz-rx-rate"></div>
-						</div>
-						<div class="drop"><span class="drop-level"></span></div>
-					</div>
-
-					<div class="node-main col-lg-6 row1-right">
-						<div class="node-title">
-							<span class="node-group">在线服务部</span><br/>
-							<span class="node-target">完成量：</span>
-							<span class="node-value"></span>
-							<div class="connect-rate hz-zx-rate"></div>
-						</div>
-						<div class="drop"><span class="drop-level"></span></div>
-					</div>
-				</div>
-
-				<!-- 第二行节点 -->
-				<div class="nodes-container">
-					<div class="node-main col-lg-3 row2-left1">
-						<div class="node-title">
-							<span class="node-group">欺诈盗用</span><br/>
-							<span class="node-target">完成量：</span>
-							<span class="node-value"></span>
-							<div class="connect-rate hz-qz-rate"></div>
-						</div>
-						<div class="drop"><span class="drop-level"></span></div>
-					</div>
-
-					<div class="node-main col-lg-3 row2-left2">
-						<div class="node-title">
-							<span class="node-group">CTU</span><br/>
-							<span class="node-target">完成量：</span>
-							<span class="node-value"></span>
-							<div class="connect-rate hz-ctu-rate"></div>
-						</div>
-						<div class="drop"><span  class="drop-level"></span></div>
-					</div>
-
-					<div class="node-main col-lg-3 row2-right1">
-						<div class="node-title">
-							<span class="node-group">基础服务</span><br/>
-							<span class="node-target">完成量：</span>
-							<span class="node-value"></span>
-							<div class="connect-rate hz-jc-rate"></div>
-						</div>
-						<div class="drop"><span class="drop-level"></span></div>
-					</div>
-
-					<div class="node-main col-lg-3 row2-right2">
-						<div class="node-title">
-							<span class="node-group">安全服务</span><br/>
-							<span class="node-target">完成量：</span>
-							<span class="node-value"></span>
-							<div class="connect-rate hz-aq-rate"></div>
-						</div>
-						<div class="drop"><span class="drop-level"></span></div>
-					</div>
-					<div class="node-main col-lg-3 row2-right3">
-						<div class="node-title">
-							<span class="node-group">支持线</span><br/>
-							<span class="node-target">完成量：</span>
-							<span class="node-value"></span>
-							<div class="connect-rate hz-zc-rate"></div>
-						</div>
-						<div class="drop"><span class="drop-level"></span></div>
-					</div>
-				</div>
-			</div>
-			<!-- 第三个页面 -->
-
-			<!-- 第四个页面 -->
-			<div id="pt-page-4" class="pt-page pt-page-4">
-				<div class="count-value"></div>
-
-				<!-- 第一行节点 -->
-				 <div class="nodes-container">
-					<div class="node-main col-lg-6 row1-left">
-						<div class="node-title">
-							<span class="node-group">热线服务部</span><br/>
-							<span class="node-target">完成量：</span>
-							<span class="node-value"></span>
-							<div class="connect-rate wb-rx-rate"></div>
-						</div>
-						<div class="drop"><span class="drop-level"></span></div>
-					</div>
-
-					<div class="node-main col-lg-6 row1-right">
-						<div class="node-title">
-							<span class="node-group">在线服务部</span><br/>
-							<span class="node-target">完成量：</span>
-							<span class="node-value"></span>
-							<div class="connect-rate wb-zx-rate"></div>
-						</div>
-						<div class="drop"><span class="drop-level"></span></div>
-					</div>
-				</div>
-
-				<!-- 第二行节点 -->
-				<div class="nodes-container">
-					<div class="node-main col-lg-3 row2-left1">
-						<div class="node-title">
-							<span class="node-group">华拓</span><br/>
-							<span class="node-target">完成量：</span>
-							<span class="node-value"></span>
-							<div class="connect-rate wb-ht-rate"></div>
-						</div>
-						<div class="drop"><span class="drop-level"></span></div>
-					</div>
-
-					<div class="node-main col-lg-3 row2-left2">
-						<div class="node-title">
-							<span class="node-group">华泛</span><br/>
-							<span class="node-target">完成量：</span>
-							<span class="node-value"></span>
-							<div class="connect-rate wb-hf-rate"></div>
-						</div>
-						<div class="drop"><span  class="drop-level"></span></div>
-					</div>
-
-					<div class="node-main col-lg-3 row2-left3">
-						<div class="node-title">
-							<span class="node-group">万声</span><br/>
-							<span class="node-target">完成量：</span>
-							<span class="node-value"></span>
-							<div class="connect-rate wb-ws-rate1"></div>
-						</div>
-						<div class="drop"><span class="drop-level"></span></div>
-					</div>
-
-					<div class="node-main col-lg-3 row2-left4">
-						<div class="node-title">
-							<span class="node-group">泰盈</span><br/>
-							<span class="node-target">完成量：</span>
-							<span class="node-value"></span>
-							<div class="connect-rate wb-ty-rate"></div>
-						</div>
-						<div class="drop"><span class="drop-level"></span></div>
-					</div>
-					<div class="node-main col-lg-3 row2-right">
-						<div class="node-title">
-							<span class="node-group">万声</span><br/>
-							<span class="node-target">完成量：</span>
-							<span class="node-value"></span>
-							<div class="connect-rate wb-ws-rate2"></div>
-						</div>
-						<div class="drop"><span class="drop-level"></span></div>
-					</div>
-				</div>
-			</div>
-			<!-- 第四个页面 -->
-
 		</div>
+		<!-- 第一个页面 -->
 
-		<script charset="utf-8" src="js/jquery.min.js"></script>
-		<script src="js/serverCenter.js"></script>
-		<script>
-			 (function(){
-				var intervalTime = 8,  //切换屏幕间隔秒数
+		<!-- 第二个页面 -->
+		<div id="pt-page-2" class="pt-page pt-page-2">
+			<!-- 节点容器 -->
+			<div class="count-value"></div>
+
+			<!-- 第一行节点 -->
+			<div class="nodes-container">
+				<div class="node-main col-lg-6 row1-left">
+					<div class="node-title">
+						<span class="node-group">热线服务部</span>
+						<br/>
+						<span class="node-target">完成量：</span>
+						<span class="node-value"></span>
+						<div class="connect-rate cd-rx-rate"></div>
+					</div>
+					<div class="drop"><span class="drop-level"></span>
+					</div>
+				</div>
+			</div>
+
+			<!-- 第二行节点 -->
+			<div class="nodes-container">
+				<div class="node-main col-lg-3 row2-left1">
+					<div class="node-title">
+						<span class="node-group">基础服务</span>
+						<br/>
+						<span class="node-target">完成量：</span>
+						<span class="node-value"></span>
+						<div class="connect-rate cd-jc-rate"></div>
+					</div>
+					<div class="drop"><span class="drop-level"></span>
+					</div>
+				</div>
+
+				<div class="node-main col-lg-3 row2-left2">
+					<div class="node-title">
+						<span class="node-group">创新金融</span>
+						<br/>
+						<span class="node-target">完成量：</span>
+						<span class="node-value"></span>
+						<div class="connect-rate cd-jr-rate"></div>
+					</div>
+					<div class="drop"><span class="drop-level"></span>
+					</div>
+				</div>
+			</div>
+			<!-- 节点容器 -->
+		</div>
+		<!-- 第二个页面 -->
+
+		<!-- 第三个页面 -->
+		<div id="pt-page-3" class="pt-page pt-page-3">
+			<div class="count-value"></div>
+
+			<!-- 第一行节点 -->
+			<div class="nodes-container">
+				<div class="node-main col-lg-6 row1-left">
+					<div class="node-title">
+						<span class="node-group">热线服务部</span>
+						<br/>
+						<span class="node-target">完成量：</span>
+						<span class="node-value"></span>
+						<div class="connect-rate hz-rx-rate"></div>
+					</div>
+					<div class="drop"><span class="drop-level"></span>
+					</div>
+				</div>
+
+				<div class="node-main col-lg-6 row1-right">
+					<div class="node-title">
+						<span class="node-group">在线服务部</span>
+						<br/>
+						<span class="node-target">完成量：</span>
+						<span class="node-value"></span>
+						<div class="connect-rate hz-zx-rate"></div>
+					</div>
+					<div class="drop"><span class="drop-level"></span>
+					</div>
+				</div>
+			</div>
+
+			<!-- 第二行节点 -->
+			<div class="nodes-container">
+				<div class="node-main col-lg-3 row2-left1">
+					<div class="node-title">
+						<span class="node-group">欺诈盗用</span>
+						<br/>
+						<span class="node-target">完成量：</span>
+						<span class="node-value"></span>
+						<div class="connect-rate hz-qz-rate"></div>
+					</div>
+					<div class="drop"><span class="drop-level"></span>
+					</div>
+				</div>
+
+				<div class="node-main col-lg-3 row2-left2">
+					<div class="node-title">
+						<span class="node-group">CTU</span>
+						<br/>
+						<span class="node-target">完成量：</span>
+						<span class="node-value"></span>
+						<div class="connect-rate hz-ctu-rate"></div>
+					</div>
+					<div class="drop"><span class="drop-level"></span>
+					</div>
+				</div>
+
+				<div class="node-main col-lg-3 row2-right1">
+					<div class="node-title">
+						<span class="node-group">基础服务</span>
+						<br/>
+						<span class="node-target">完成量：</span>
+						<span class="node-value"></span>
+						<div class="connect-rate hz-jc-rate"></div>
+					</div>
+					<div class="drop"><span class="drop-level"></span>
+					</div>
+				</div>
+
+				<div class="node-main col-lg-3 row2-right2">
+					<div class="node-title">
+						<span class="node-group">安全服务</span>
+						<br/>
+						<span class="node-target">完成量：</span>
+						<span class="node-value"></span>
+						<div class="connect-rate hz-aq-rate"></div>
+					</div>
+					<div class="drop"><span class="drop-level"></span>
+					</div>
+				</div>
+				<div class="node-main col-lg-3 row2-right3">
+					<div class="node-title">
+						<span class="node-group">支持线</span>
+						<br/>
+						<span class="node-target">完成量：</span>
+						<span class="node-value"></span>
+						<div class="connect-rate hz-zc-rate"></div>
+					</div>
+					<div class="drop"><span class="drop-level"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 第三个页面 -->
+
+		<!-- 第四个页面 -->
+		<div id="pt-page-4" class="pt-page pt-page-4">
+			<div class="count-value"></div>
+
+			<!-- 第一行节点 -->
+			<div class="nodes-container">
+				<div class="node-main col-lg-6 row1-left">
+					<div class="node-title">
+						<span class="node-group">热线服务部</span>
+						<br/>
+						<span class="node-target">完成量：</span>
+						<span class="node-value"></span>
+						<div class="connect-rate wb-rx-rate"></div>
+					</div>
+					<div class="drop"><span class="drop-level"></span>
+					</div>
+				</div>
+
+				<div class="node-main col-lg-6 row1-right">
+					<div class="node-title">
+						<span class="node-group">在线服务部</span>
+						<br/>
+						<span class="node-target">完成量：</span>
+						<span class="node-value"></span>
+						<div class="connect-rate wb-zx-rate"></div>
+					</div>
+					<div class="drop"><span class="drop-level"></span>
+					</div>
+				</div>
+			</div>
+
+			<!-- 第二行节点 -->
+			<div class="nodes-container">
+				<div class="node-main col-lg-3 row2-left1">
+					<div class="node-title">
+						<span class="node-group">华拓</span>
+						<br/>
+						<span class="node-target">完成量：</span>
+						<span class="node-value"></span>
+						<div class="connect-rate wb-ht-rate"></div>
+					</div>
+					<div class="drop"><span class="drop-level"></span>
+					</div>
+				</div>
+
+				<div class="node-main col-lg-3 row2-left2">
+					<div class="node-title">
+						<span class="node-group">华泛</span>
+						<br/>
+						<span class="node-target">完成量：</span>
+						<span class="node-value"></span>
+						<div class="connect-rate wb-hf-rate"></div>
+					</div>
+					<div class="drop"><span class="drop-level"></span>
+					</div>
+				</div>
+
+				<div class="node-main col-lg-3 row2-left3">
+					<div class="node-title">
+						<span class="node-group">万声</span>
+						<br/>
+						<span class="node-target">完成量：</span>
+						<span class="node-value"></span>
+						<div class="connect-rate wb-ws-rate1"></div>
+					</div>
+					<div class="drop"><span class="drop-level"></span>
+					</div>
+				</div>
+
+				<div class="node-main col-lg-3 row2-left4">
+					<div class="node-title">
+						<span class="node-group">泰盈</span>
+						<br/>
+						<span class="node-target">完成量：</span>
+						<span class="node-value"></span>
+						<div class="connect-rate wb-ty-rate"></div>
+					</div>
+					<div class="drop"><span class="drop-level"></span>
+					</div>
+				</div>
+				<div class="node-main col-lg-3 row2-right">
+					<div class="node-title">
+						<span class="node-group">万声</span>
+						<br/>
+						<span class="node-target">完成量：</span>
+						<span class="node-value"></span>
+						<div class="connect-rate wb-ws-rate2"></div>
+					</div>
+					<div class="drop"><span class="drop-level"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 第四个页面 -->
+
+	</div>
+
+	<script charset="utf-8" src="js/jquery.min.js"></script>
+	<script src="js/serverCenter.js"></script>
+	<script>
+		(function () {
+			var intervalTime = 800, //切换屏幕间隔秒数
 				pageElements = document.getElementsByClassName('pt-page'),
 				pagesCount = pageElements.length,
-				serverUrl = 'http://127.0.0.1/admin/getDataByMddCodeProxy.json?codes=';  //请求地址
+				serverUrl = 'http://10.63.68.20/admin/getDataByMddCodeProxy.json?codes='; //请求地址
 
-				//同步服务端时间
-				var reqCount = 0,
+			//同步服务端时间
+			var reqCount = 0,
 				reqTime = (new Date()).getTime() - 60000;
-				/* 目标值的配置 从上至下 从左至右 */
-				var allTargets = [20000, 30000, 50000, 40000, 20000],   //各服务中心目标量
-					cd_targetArr = [12000, 9000, 3000],  //成都目标值配置
-					hz_targetArr = [12000, 40000, 5000, 7000, 24000, 8000, 8000],   //杭州目标值配置
-					wb_targetArr = [40000, 20000, 10000, 10000, 10000, 10000, 20000]; //外包目标值配置
+			/* 目标值的配置 从上至下 从左至右 */
+			var allTargets = [20000, 30000, 50000, 40000, 20000], //各服务中心目标量
+				cd_targetArr = [12000, 9000, 3000], //成都目标值配置
+				hz_targetArr = [12000, 40000, 5000, 7000, 24000, 8000, 8000], //杭州目标值配置
+				wb_targetArr = [40000, 20000, 10000, 10000, 10000, 10000, 20000]; //外包目标值配置
 
-								/*  变量定义 */
-				var current = 0,  //当前页index
-					outClass = '', inClass = '',  //动画类名
-					currOriClass = '', nextOriClass = '',
-					endCurrPage = false,       //动画状态判断
-					endNextPage = false,
-					animEndEventName = 'webkitAnimationEnd',        //结束动画的事件名称
-					isToLeft = false;	//页面切换方向控制（向左or向右）
+			/*  变量定义 */
+			var current = 2, //当前页index
+				outClass = '',
+				inClass = '', //动画类名
+				currOriClass = '',
+				nextOriClass = '',
+				endCurrPage = false, //动画状态判断
+				endNextPage = false,
+				animEndEventName = 'webkitAnimationEnd', //结束动画的事件名称
+				isToLeft = false; //页面切换方向控制（向左or向右）
 
-				var syncServerRate = function(values){ //同步各服务中心服务量
-					$(".header .value i").eq(0).text(values['MD_RGFW_REXIAN_ZIYING_CD_ZL_VISITOR_RESPONSE_DAY']);
-					$(".header .value i").eq(1).text(values['MD_RGFW_HZ_RGFWZT_VISITOR_RESPONSE_DAY']);
-					$(".header .value i").eq(2).text(values['MD_RGFW_WAIBAO_RGFWZT_VISITOR_RESPONSE_DAY']);
-				}
+			var syncServerRate = function (values) { //同步各服务中心服务量
+				$(".header .value i").eq(0).text(values['MD_RGFW_REXIAN_ZIYING_CD_ZL_VISITOR_RESPONSE_DAY']);
+				$(".header .value i").eq(1).text(values['MD_RGFW_HZ_RGFWZT_VISITOR_RESPONSE_DAY']);
+				$(".header .value i").eq(2).text(values['MD_RGFW_WAIBAO_RGFWZT_VISITOR_RESPONSE_DAY']);
+			}
 
-								/* 公共函数定义 */
-				var util = {};
-					util.addClass = function(el, className){
-						var n = el.className;
-						el.className = n ? n + ' ' + className : className;
-					};
-					util.removeClass = function(el, className){
-						var arr = el.className.split(' ');
-						for(var i = 0, len = arr.length; i < len; i++){
-							if(arr[i] == className){arr.splice(i, 1);}
-						}
-						el.className = arr.join(' ');
-					};
-					util.hasClass = function(el, className){
-						var arr = el.className.split(' ');
-						for(var i = 0, len = arr.length; i < len; i++){
-							if(arr[i] == className){return true;}
-						}
-						return false;
-					};
-
-				//各服务中心柱状图数据结构处理
-				var barDataPro = function(data){
-					var result = [],k=0,m=1,
-						value, temp = [];
-
-					if(!data || !data.length) return false;
-					if(data.length <= 3){
-						data.splice(2, 0, {'qualifyMap':{'123':0}});
-						data.push({'qualifyMap':{'123':0}});
+			/* 公共函数定义 */
+			var util = {};
+			util.addClass = function (el, className) {
+				var n = el.className;
+				el.className = n ? n + ' ' + className : className;
+			};
+			util.removeClass = function (el, className) {
+				var arr = el.className.split(' ');
+				for (var i = 0, len = arr.length; i < len; i++) {
+					if (arr[i] == className) {
+						arr.splice(i, 1);
 					}
-					if(data.length == 6){k=1;m=0;}
-
-					for(var i = 0, l = data.length; i < l; i++){
-						for(var value in data[i].qualifyMap){
-							value = data[i].qualifyMap[value] - 0;
-							//value = tranPercent(value, 2);
-						}
-						if(i % 2 == m) temp = [];
-						temp.push(tranPercent(value/allTargets[i], 2));
-						if(i % 2 == k) result.push(temp);
+				}
+				el.className = arr.join(' ');
+			};
+			util.hasClass = function (el, className) {
+				var arr = el.className.split(' ');
+				for (var i = 0, len = arr.length; i < len; i++) {
+					if (arr[i] == className) {
+						return true;
 					}
-					return result;
-				};
+				}
+				return false;
+			};
 
-				//百分数转换
-				function tranPercent(num, digit){
-					var v = Math.pow(10, parseInt(digit));
-					return Math.round(num * 100 * v)/v;
+			//各服务中心柱状图数据结构处理
+			var barDataPro = function (data) {
+				var result = [],
+					k = 0,
+					m = 1,
+					value, temp = [];
+				if (!data || !data.length) return false;
+				if (data.length <= 3) {
+					data.splice(2, 0, {
+						'qualifyMap': {
+							'123': 0
+						}
+					});
+					data.push({
+						'qualifyMap': {
+							'123': 0
+						}
+					});
+				}
+				if (data.length == 6) {
+					k = 1;
+					m = 0;
 				}
 
-				//生成json URL函数
-				function getRequestUrl(code, qf, time){
-					return serverUrl + code + '&qualify=' + qf + '&time=' + time + '&callback=?';
+				for (var i = 0, l = data.length; i < l; i++) {
+					for (var value in data[i].qualifyMap) {
+						value = data[i].qualifyMap[value] - 0;
+						//value = tranPercent(value, 2);
+					}
+					if (i % 2 == m) temp = [];
+					temp.push(tranPercent(value / allTargets[i], 2));
+					if (i % 2 == k) result.push(temp);
 				}
+				return result;
+			};
 
-				window.onload = function(){
-					var sc = new serverCenter("histogram");
-					var codes = [
+			//百分数转换
+			function tranPercent(num, digit) {
+				var v = Math.pow(10, parseInt(digit));
+				return ((num * 100 * v) / v).toFixed(2);
+			}
+
+			//生成json URL函数
+			function getRequestUrl(code, qf, time) {
+				var pushURL = serverUrl + code + '&qualify=' + qf + '&time=' + time + '&callback=?';
+				return pushURL;
+			}
+			var getTime = function () {
+				var timestamp = reqTime + reqCount * 1000 * pagesCount * intervalTime;
+				console.info("请求时间：" + timestamp);
+				return timestamp;
+			}
+
+			window.onload = function () {
+				var sc = new serverCenter("histogram");
+				var codes = [
 						'MD_RGFW_REXIAN_ZIYING_CD_ZL_VISITOR_RESPONSE_DAY',
 						'MD_RGFW_HZ_RGFWZT_VISITOR_RESPONSE_DAY',
 						'MD_RGFW_WAIBAO_RGFWZT_VISITOR_RESPONSE_DAY', //三个完成量
 
 						'MD_RGFW_REXIAN_HZ_RGFWZT_VISITOR_RESPONSE_DAY',
-						'MD_RGFW_ZAIXIAN_HZ_RGFWZT_DAY',  //无数据
+						'MD_RGFW_ZAIXIAN_HZ_RGFWZT_DAY', //无数据
 						'MD_RGFW_REXIAN_WAIBAO_MBZT_DAY',
 						'MD_CLIVECENTER_G_29_DAY' //无数据
 					];
-					var qfs = [
+				var qfs = [
 						'VISITOR_RESPONSE_SELF',
 						'TOTAL_VISITOR_RESPONSE',
 						'TOTAL_VISITOR_RESPONSE',
@@ -665,139 +756,158 @@
 						'VISITOR_RESPONSE'
 					];
 
-					jQuery.getJSON(getRequestUrl(codes.join(','), qfs.join(','), (reqTime + reqCount*1000*pagesCount* intervalTime)), function(json){
-						var completeValues = dataPro(json.slice(0,3));
-						json.splice(1,2);
-						var rateValues = barDataPro(json);
-						sc.reDraw(rateValues);
-						syncServerRate(completeValues);
-						setTimeout(function(){
-							setInterval(function(){
-								reqCount++;
-								jQuery.getJSON(getRequestUrl(codes.join(','), qfs.join(','), (reqTime + reqCount*1000*pagesCount* intervalTime)), function(json){
-									var completeValues = dataPro(json.slice(0,3));
-									json.splice(1,2);
-									var rateValues = barDataPro(json);
-									sc.reDraw(rateValues);
-									syncServerRate(completeValues);
-								});
-							},1000 * intervalTime * pagesCount);
-						}, 100);
-					});
-				}
-
-				//页面切换函数
-				function pageChangeFunc(){
-					var currPage = pageElements[current];
-					var curArr = currPage.attributes['class'].value.split(' ');
-					currOriClass = ''; nextOriClass = '';
-					if(curArr.length >=4) curArr = curArr.slice(0, 3);
-					if(curArr.length>=3 && curArr[2].indexOf('current')>=0) curArr.splice(2);
-					currOriClass = curArr.join(' ');
-
-					if( current < pagesCount - 1 ) { ++current;}
-					else { current = 0; }
-
-					var nextPage = pageElements[current];
-					nextOriClass = nextPage.attributes['class'].value;
-					if(!util.hasClass(nextPage, 'pt-page-current'))
-						util.addClass(nextPage, 'pt-page-current' );
-
-					if(pagesCount == 1) return;
-
-					//向左向右控制
-					if(isToLeft){
-						outClass = 'pt-page-moveToLeft';
-						inClass = 'pt-page-moveFromRight';
-					}else{
-						outClass = 'pt-page-moveToRight';
-						inClass = 'pt-page-moveFromLeft';
-					}
-
-					if(!util.hasClass(nextPage, inClass))
-						util.addClass(nextPage, inClass);
-
-					if(!util.hasClass(currPage, outClass))
-						util.addClass(currPage, outClass);
-
-					//动画结束事件处理函数
-					setTimeout(function(){
-						onEndAnimation(currPage, nextPage );
-					}, 700);
-				}
-
-				function onEndAnimation( $outpage, $inpage ) {
-					$outpage.attributes['class'].value = currOriClass;
-					$inpage.attributes['class'].value = nextOriClass + ' pt-page-current';
-				}
-
-				//页面切换
-				setInterval(pageChangeFunc, 1000*intervalTime);
-
-				/**
-			     * 各服务中心球体数据更新
-			     *
-			     * @param mainEle 球体容器元素
-			     * @param nodeVal 球体节点完成量数值
-			     * @param dropVal 球体节点完成率
-			     * @param rateVal 球体节点接通率
-			     */
-				function dataValueUpdate(mainEle, nodeVal, dropVal, rateVal){
-					nodeVal = nodeVal === undefined ? 0 : nodeVal;
-					dropVal = dropVal === undefined ? 0 : dropVal;
-					rateVal = rateVal === undefined ? 0 : rateVal + '%';
-
-					$(mainEle).find('.node-value').text(nodeVal);
-					$(mainEle).find('.connect-rate').text(rateVal);
-					var totalHeight = $('.drop').first().height();
-					var h = parseInt(dropVal) / 100 * totalHeight;
-					if(dropVal > 20){
-						$(mainEle).find('.drop b').remove();
-						if(dropVal >= 100)	//完成率大于100%时，不同的显示方式
-							$(mainEle).find('.drop-level').css('lineHeight', totalHeight + 'px').css('backgroundColor', 'red').height(totalHeight).text(dropVal+'%');
-						else
-							$(mainEle).find('.drop-level').css('lineHeight', h+'px').height(h).text(dropVal+'%');
-					}else{
-						$(mainEle).find('.drop b').remove();
-						$(mainEle).find('.drop-level').text('').height(h);
-						$('<b>'+dropVal+'%</b>').appendTo($(mainEle).find('.drop'));
-					}
-				}
-
-				//数据格式转换 --- 转换成单位万
-				function dataTranslate(num){
-					var result = '';
-					num = num === undefined ? 0 : num;
-					result = parseInt(num) >= 10000 ? Math.round(num / 10000) + '万' : num;
-					return result;
-				}
-
-				//转换json数据结构 --- 返回包含各数据值的对象
-				function dataPro(data){
-					var result = {}, value;
-					if(!data || !data.length) return false;
-					for(var i = 0, l = data.length; i < l; i++){
-						for(var value in data[i].qualifyMap){
-							value = data[i].qualifyMap[value] - 0;
+				jQuery.getJSON(getRequestUrl(codes.join(','), qfs.join(','), getTime()), function (json) {
+					var completeValues = dataPro(json.slice(0, 3));
+					json.splice(1, 2);
+				/*	for (var code in json) {
+						console.info("请求CODE :" + json[code].mddCode);
+						for (var map in json[code].qualifyMap) {
+							console.info("请求Qualify :" + map);
+							console.info("值 :" + json[code].qualifyMap[map]);
 						}
-						result[data[i].mddCode] = value;
+
+						console.info("=========================================");
 					}
-					return result;
+
+					console.info("********************结束********************");*/
+					var rateValues = barDataPro(json);
+					sc.reDraw(rateValues);
+					syncServerRate(completeValues);
+					setTimeout(function () {
+						setInterval(function () {
+							reqCount++;
+							jQuery.getJSON(getRequestUrl(codes.join(','), qfs.join(','), getTime()), function (json) {
+								var completeValues = dataPro(json.slice(0, 3));
+								json.splice(1, 2);
+								var rateValues = barDataPro(json);
+								sc.reDraw(rateValues);
+								syncServerRate(completeValues);
+							});
+						}, 1000 * intervalTime * pagesCount);
+					}, 100);
+				});
+			}
+
+			//页面切换函数
+			function pageChangeFunc() {
+				var currPage = pageElements[current];
+				var curArr = currPage.attributes['class'].value.split(' ');
+				currOriClass = '';
+				nextOriClass = '';
+				if (curArr.length >= 4) curArr = curArr.slice(0, 3);
+				if (curArr.length >= 3 && curArr[2].indexOf('current') >= 0) curArr.splice(2);
+				currOriClass = curArr.join(' ');
+
+				if (current < pagesCount - 1) {
+					++current;
+				} else {
+					current = 0;
 				}
 
-				//hz data update          杭州服务中心页面数据更新
-				function hzDataUpdate(){
-					var resultArr = [],
-						codes = [
-						'MD_RGFW_REXIAN_HZ_RGFWZT_VISITOR_RESPONSE_DAY',   //杭州热线完成量
-						'MD_RGFW_ZAIXIAN_HZ_RGFWZT_DAY',  //杭州在线完成量
-						'MD_RGFW_REXIAN_ZIYING_HZ_QZDY_ZL_VISITOR_RESPONSE_DAY',  //杭州欺诈盗用完成量
-						'MD_RGFW_REXIAN_ZIYING_HZ_CTU_ZL_VISITOR_RESPONSE_DAY',   //杭州CTU完成量
-						'MD_CLIVECENTER_G_RGFW_ZAIXIAN_ZHILIAN_YUNKEFU_DAY',    //杭州基础服务完成量
-						'MD_CLIVECENTER_G_06_DAY',  //杭州安全服务完成量
-						'MD_CLIVECENTER_G_07_DAY',  //杭州支持线完成量
+				var nextPage = pageElements[current];
+				nextOriClass = nextPage.attributes['class'].value;
+				if (!util.hasClass(nextPage, 'pt-page-current'))
+					util.addClass(nextPage, 'pt-page-current');
 
-						'MD_RGFW_REXIAN_HZ_RGFWZT_CONNECTION_RATE_DAY',   //对应的接通率
+				if (pagesCount == 1) return;
+
+				//向左向右控制
+				if (isToLeft) {
+					outClass = 'pt-page-moveToLeft';
+					inClass = 'pt-page-moveFromRight';
+				} else {
+					outClass = 'pt-page-moveToRight';
+					inClass = 'pt-page-moveFromLeft';
+				}
+
+				if (!util.hasClass(nextPage, inClass))
+					util.addClass(nextPage, inClass);
+
+				if (!util.hasClass(currPage, outClass))
+					util.addClass(currPage, outClass);
+
+				//动画结束事件处理函数
+				setTimeout(function () {
+					onEndAnimation(currPage, nextPage);
+				}, 700);
+			}
+
+			function onEndAnimation($outpage, $inpage) {
+				$outpage.attributes['class'].value = currOriClass;
+				$inpage.attributes['class'].value = nextOriClass + ' pt-page-current';
+			}
+
+			//页面切换
+			pageChangeFunc();
+			//cdDataUpdate();   //TODO: 测试支持 待删除
+			wbDataUpdate();   //TODO: 测试支持 待删除
+			//setInterval(pageChangeFunc, 1000 * intervalTime);
+
+			/**
+			 * 各服务中心球体数据更新
+			 *
+			 * @param mainEle 球体容器元素
+			 * @param nodeVal 球体节点完成量数值
+			 * @param dropVal 球体节点完成率
+			 * @param rateVal 球体节点接通率
+			 */
+			function dataValueUpdate(mainEle, nodeVal, dropVal, rateVal) {
+				nodeVal = nodeVal === undefined ? 0 : nodeVal;
+				dropVal = dropVal === undefined ? 0 : dropVal;
+				rateVal = rateVal === undefined ? 0 : rateVal + '%';
+
+				$(mainEle).find('.node-value').text(nodeVal);
+				$(mainEle).find('.connect-rate').text(rateVal);
+				var totalHeight = $('.drop').first().height();
+				var h = parseInt(dropVal) / 100 * totalHeight;
+				if (dropVal > 20) {
+					$(mainEle).find('.drop b').remove();
+					if (dropVal >= 100) //完成率大于100%时，不同的显示方式
+						$(mainEle).find('.drop-level').css('lineHeight', totalHeight + 'px').css('backgroundColor', 'red').height(totalHeight).text(dropVal + '%');
+					else
+						$(mainEle).find('.drop-level').css('lineHeight', h + 'px').height(h).text(dropVal + '%');
+				} else {
+					$(mainEle).find('.drop b').remove();
+					$(mainEle).find('.drop-level').text('').height(h);
+					$('<b>' + dropVal + '%</b>').appendTo($(mainEle).find('.drop'));
+				}
+			}
+
+			//数据格式转换 --- 转换成单位万
+			function dataTranslate(num) {
+				var result = '';
+				num = num === undefined ? 0 : num;
+				result = parseInt(num) >= 10000 ? Math.round(num / 10000) + '万' : num;
+				return result;
+			}
+
+			//转换json数据结构 --- 返回包含各数据值的对象
+			function dataPro(data) {
+				var result = {},
+					value;
+				if (!data || !data.length) return false;
+				for (var i = 0, l = data.length; i < l; i++) {
+					for (var value in data[i].qualifyMap) {
+						value = data[i].qualifyMap[value] - 0;
+					}
+					result[data[i].mddCode] = value;
+				}
+				return result;
+			}
+
+			//hz data update          杭州服务中心页面数据更新
+			function hzDataUpdate() {
+				var resultArr = [],
+					codes = [
+						'MD_RGFW_REXIAN_HZ_RGFWZT_VISITOR_RESPONSE_DAY', //杭州热线完成量
+						'MD_RGFW_ZAIXIAN_HZ_RGFWZT_DAY', //杭州在线完成量
+						'MD_RGFW_REXIAN_ZIYING_HZ_QZDY_ZL_VISITOR_RESPONSE_DAY', //杭州欺诈盗用完成量
+						'MD_RGFW_REXIAN_ZIYING_HZ_CTU_ZL_VISITOR_RESPONSE_DAY', //杭州CTU完成量
+						'MD_CLIVECENTER_G_RGFW_ZAIXIAN_ZHILIAN_YUNKEFU_DAY', //杭州基础服务完成量
+						'MD_CLIVECENTER_G_06_DAY', //杭州安全服务完成量
+						'MD_CLIVECENTER_G_07_DAY', //杭州支持线完成量
+
+						'MD_RGFW_REXIAN_HZ_RGFWZT_CONNECTION_RATE_DAY', //对应的接通率
 						'MD_RGFW_ZAIXIAN_HZ_RGFWZT_CONNECTION_RATE_DAY',
 						'MD_RGFW_REXIAN_ZIYING_HZ_QZDY_ZL_CONNECTION_RATE_DAY',
 						'MD_RGFW_REXIAN_ZIYING_HZ_CTU_ZL_CONNECTION_RATE_DAY',
@@ -805,9 +915,9 @@
 						'MD_CLIVECENTER_G_06_RATE_DAY',
 						'MD_CLIVECENTER_G_07_RATE_DAY',
 
-						'MD_RGFW_HZ_RGFWZT_VISITOR_RESPONSE_DAY'   //杭州服务中心完成量
+						'MD_RGFW_HZ_RGFWZT_VISITOR_RESPONSE_DAY' //杭州服务中心完成量
 					],
-						qfs = [
+					qfs = [
 						'VISITOR_RESPONSE_SELF',
 						'VISITOR_RESPONSE',
 						'VISITOR_RESPONSE_SELF',
@@ -827,79 +937,79 @@
 						'TOTAL_VISITOR_RESPONSE'
 					];
 
-					jQuery.getJSON(getRequestUrl(codes.join(','), qfs.join(','), (reqTime + reqCount*1000*pagesCount* intervalTime)), function(json){
-						resultArr = dataPro(json);
-						var hzrx = resultArr['MD_RGFW_REXIAN_HZ_RGFWZT_VISITOR_RESPONSE_DAY'],
-							hzrx_rate = resultArr['MD_RGFW_REXIAN_HZ_RGFWZT_CONNECTION_RATE_DAY'],
-							hzzx = resultArr['MD_RGFW_ZAIXIAN_HZ_RGFWZT_DAY'],
-							hzzx_rate = resultArr['MD_RGFW_ZAIXIAN_HZ_RGFWZT_CONNECTION_RATE_DAY'],
-							hzqz = resultArr['MD_RGFW_REXIAN_ZIYING_HZ_QZDY_ZL_VISITOR_RESPONSE_DAY'],
-							hzqz_rate = resultArr['MD_RGFW_REXIAN_ZIYING_HZ_QZDY_ZL_CONNECTION_RATE_DAY'];
-							hzctu = resultArr['MD_RGFW_REXIAN_ZIYING_HZ_CTU_ZL_VISITOR_RESPONSE_DAY'],
-							hzctu_rate = resultArr['MD_RGFW_REXIAN_ZIYING_HZ_CTU_ZL_CONNECTION_RATE_DAY'];
-							hzjc = resultArr['MD_CLIVECENTER_G_RGFW_ZAIXIAN_ZHILIAN_YUNKEFU_DAY'],
-							hzjc_rate = resultArr['MD_CLIVECENTER_G_RGFW_ZAIXIAN_ZHILIAN_YUNKEFU_RATE_DAY'];
-							hzaq = resultArr['MD_CLIVECENTER_G_06_DAY'],
-							hzaq_rate = resultArr['MD_CLIVECENTER_G_06_RATE_DAY'];
-							hzzc = resultArr['MD_CLIVECENTER_G_07_DAY'],
-							hzzc_rate = resultArr['MD_CLIVECENTER_G_07_RATE_DAY'],
-							hztotal = resultArr['MD_RGFW_HZ_RGFWZT_VISITOR_RESPONSE_DAY'];
+				jQuery.getJSON(getRequestUrl(codes.join(','), qfs.join(','), getTime()), function (json) {
+					resultArr = dataPro(json);
+					var hzrx = resultArr['MD_RGFW_REXIAN_HZ_RGFWZT_VISITOR_RESPONSE_DAY'],
+						hzrx_rate = resultArr['MD_RGFW_REXIAN_HZ_RGFWZT_CONNECTION_RATE_DAY'],
+						hzzx = resultArr['MD_RGFW_ZAIXIAN_HZ_RGFWZT_DAY'],
+						hzzx_rate = resultArr['MD_RGFW_ZAIXIAN_HZ_RGFWZT_CONNECTION_RATE_DAY'],
+						hzqz = resultArr['MD_RGFW_REXIAN_ZIYING_HZ_QZDY_ZL_VISITOR_RESPONSE_DAY'],
+						hzqz_rate = resultArr['MD_RGFW_REXIAN_ZIYING_HZ_QZDY_ZL_CONNECTION_RATE_DAY'];
+					hzctu = resultArr['MD_RGFW_REXIAN_ZIYING_HZ_CTU_ZL_VISITOR_RESPONSE_DAY'],
+					hzctu_rate = resultArr['MD_RGFW_REXIAN_ZIYING_HZ_CTU_ZL_CONNECTION_RATE_DAY'];
+					hzjc = resultArr['MD_CLIVECENTER_G_RGFW_ZAIXIAN_ZHILIAN_YUNKEFU_DAY'],
+					hzjc_rate = resultArr['MD_CLIVECENTER_G_RGFW_ZAIXIAN_ZHILIAN_YUNKEFU_RATE_DAY'];
+					hzaq = resultArr['MD_CLIVECENTER_G_06_DAY'],
+					hzaq_rate = resultArr['MD_CLIVECENTER_G_06_RATE_DAY'];
+					hzzc = resultArr['MD_CLIVECENTER_G_07_DAY'],
+					hzzc_rate = resultArr['MD_CLIVECENTER_G_07_RATE_DAY'],
+					hztotal = resultArr['MD_RGFW_HZ_RGFWZT_VISITOR_RESPONSE_DAY'];
 
-						hzrx = hzrx === undefined ? 0 : hzrx;
-						hzrx_rate = hzrx_rate === undefined ? 0 : hzrx_rate;
-						hzzx = hzzx === undefined ? 0 : hzzx;
-						hzzx_rate = hzzx_rate === undefined ? 0 : hzzx_rate;
-						hzqz = hzqz === undefined ? 0 : hzqz;
-						hzqz_rate = hzqz_rate === undefined ? 0 : hzqz_rate;
+					hzrx = hzrx === undefined ? 0 : hzrx;
+					hzrx_rate = hzrx_rate === undefined ? 0 : hzrx_rate;
+					hzzx = hzzx === undefined ? 0 : hzzx;
+					hzzx_rate = hzzx_rate === undefined ? 0 : hzzx_rate;
+					hzqz = hzqz === undefined ? 0 : hzqz;
+					hzqz_rate = hzqz_rate === undefined ? 0 : hzqz_rate;
 
-						hzctu = hzctu === undefined ? 0 : hzctu;
-						hzctu_rate = hzctu_rate === undefined ? 0 : hzctu_rate;
-						hzjc = hzjc === undefined ? 0 : hzjc;
-						hzjc_rate = hzjc_rate === undefined ? 0 : hzjc_rate;
-						hzaq = hzaq === undefined ? 0 : hzaq;
-						hzaq_rate = hzaq_rate === undefined ? 0 : hzaq_rate;
-						hzzc = hzzc === undefined ? 0 : hzzc;
-						hzzc_rate = hzzc_rate === undefined ? 0 : hzzc_rate;
+					hzctu = hzctu === undefined ? 0 : hzctu;
+					hzctu_rate = hzctu_rate === undefined ? 0 : hzctu_rate;
+					hzjc = hzjc === undefined ? 0 : hzjc;
+					hzjc_rate = hzjc_rate === undefined ? 0 : hzjc_rate;
+					hzaq = hzaq === undefined ? 0 : hzaq;
+					hzaq_rate = hzaq_rate === undefined ? 0 : hzaq_rate;
+					hzzc = hzzc === undefined ? 0 : hzzc;
+					hzzc_rate = hzzc_rate === undefined ? 0 : hzzc_rate;
 
-						hztotal = hztotal === undefined ? 0 : hztotal;
+					hztotal = hztotal === undefined ? 0 : hztotal;
 
-						var hzRandoms = [
-							[$('#pt-page-3 .row1-left'), (hzrx), tranPercent(hzrx/hz_targetArr[0], 0), tranPercent(hzrx_rate, 0)],  //行一左一数据
-							[$('#pt-page-3 .row1-right'), (hzzx), tranPercent(hzzx/hz_targetArr[1], 0), tranPercent(hzzx_rate, 0)],
-							[$('#pt-page-3 .row2-left1'), (hzqz), tranPercent(hzqz/hz_targetArr[2], 0), tranPercent(hzqz_rate, 0)],
-							[$('#pt-page-3 .row2-left2'), (hzctu), tranPercent(hzctu/hz_targetArr[3], 0), tranPercent(hzctu_rate, 0)],
-							[$('#pt-page-3 .row2-right1'), (hzjc), tranPercent(hzjc/hz_targetArr[4], 0), tranPercent(hzjc_rate, 0)],
-							[$('#pt-page-3 .row2-right2'), (hzaq), tranPercent(hzaq/hz_targetArr[5], 0), tranPercent(hzaq_rate, 0)],
-							[$('#pt-page-3 .row2-right3'), (hzzc), tranPercent(hzzc/hz_targetArr[6], 0), tranPercent(hzzc_rate, 0)]
+					var hzRandoms = [
+							[$('#pt-page-3 .row1-left'), (hzrx), tranPercent(hzrx / hz_targetArr[0], 0), tranPercent(hzrx_rate, 0)], //行一左一数据
+							[$('#pt-page-3 .row1-right'), (hzzx), tranPercent(hzzx / hz_targetArr[1], 0), tranPercent(hzzx_rate, 0)],
+							[$('#pt-page-3 .row2-left1'), (hzqz), tranPercent(hzqz / hz_targetArr[2], 0), tranPercent(hzqz_rate, 0)],
+							[$('#pt-page-3 .row2-left2'), (hzctu), tranPercent(hzctu / hz_targetArr[3], 0), tranPercent(hzctu_rate, 0)],
+							[$('#pt-page-3 .row2-right1'), (hzjc), tranPercent(hzjc / hz_targetArr[4], 0), tranPercent(hzjc_rate, 0)],
+							[$('#pt-page-3 .row2-right2'), (hzaq), tranPercent(hzaq / hz_targetArr[5], 0), tranPercent(hzaq_rate, 0)],
+							[$('#pt-page-3 .row2-right3'), (hzzc), tranPercent(hzzc / hz_targetArr[6], 0), tranPercent(hzzc_rate, 0)]
 						];
 
-						 for(var i = 0, l = hzRandoms.length; i < l; i++){
-							dataValueUpdate(hzRandoms[i][0], hzRandoms[i][1], hzRandoms[i][2], hzRandoms[i][3]);
-						 }
+					for (var i = 0, l = hzRandoms.length; i < l; i++) {
+						dataValueUpdate(hzRandoms[i][0], hzRandoms[i][1], hzRandoms[i][2], hzRandoms[i][3]);
+					}
 
-						 $('#pt-page-3 .count-value').text((hztotal));
-					});
-				}
+					$('#pt-page-3 .count-value').text((hztotal));
+				});
+			}
 
-				setTimeout(function(){
-					hzDataUpdate();
-					setInterval(hzDataUpdate, 1000*intervalTime*pagesCount);
-				}, 1000 * intervalTime*2+100);
+			setTimeout(function () {
+				hzDataUpdate();
+				setInterval(hzDataUpdate, 1000 * intervalTime * pagesCount);
+			}, 1000 * intervalTime * 2 + 100);
 
-				//wb data update          外包服务中心页面数据更新
-				 function wbDataUpdate(){
-					var resultArr = [];
+			//wb data update          外包服务中心页面数据更新
+			function wbDataUpdate() {
+				var resultArr = [];
 
-					var codes = [
+				var codes = [
 						'MD_RGFW_REXIAN_WAIBAO_MBZT_DAY',
-						'MD_CLIVECENTER_G_29_DAY',   //外包在线完成量和外包在线万声完成量（相同）
+						'MD_CLIVECENTER_G_29_DAY', //外包在线完成量和外包在线万声完成量（相同）
 						'MD_RGFW_REXIAN_WAIBAO_HUATUO_DAY',
 						'MD_RGFW_REXIAN_WAIBAO_HUAFAN_DAY',
 						'MD_RGFW_REXIAN_WAIBAO_WANSHENG_DAY',
 						'MD_RGFW_REXIAN_WAIBAO_TAIYIN_SHUNGJINENG_DAY',
 
 						'MD_RGFW_REXIAN_WAIBAO_MBZT_CONNECTION_RATE_DAY',
-						'MD_CLIVECENTER_G_29_RATE_DAY',    //外包在线接通率和外包在线万声接通率（相同）
+						'MD_CLIVECENTER_G_29_RATE_DAY', //外包在线接通率和外包在线万声接通率（相同）
 						'MD_RGFW_REXIAN_WAIBAO_HUATUO_CONNECTION_RATE_DAY',
 						'MD_RGFW_REXIAN_WAIBAO_HUAFAN_CONNECTION_RATE_DAY',
 						'MD_RGFW_REXIAN_WAIBAO_WANSHENG_CONNECTION_RATE_DAY',
@@ -907,7 +1017,7 @@
 
 						'MD_RGFW_WAIBAO_RGFWZT_VISITOR_RESPONSE_DAY'
 					];
-					var qfs = [
+				var qfs = [
 						'callReady',
 						'callReady',
 						'callReady',
@@ -925,68 +1035,68 @@
 						'TOTAL_VISITOR_RESPONSE'
 					];
 
-					jQuery.getJSON(getRequestUrl(codes.join(','), qfs.join(','), (reqTime + reqCount*1000*pagesCount* intervalTime)), function(json){
-						resultArr = dataPro(json);
+				jQuery.getJSON(getRequestUrl(codes.join(','), qfs.join(','), (reqTime + reqCount * 1000 * pagesCount * intervalTime)), function (json) {
+					resultArr = dataPro(json);
 
-						var wbrx = resultArr['MD_RGFW_REXIAN_WAIBAO_MBZT_DAY'],
-							wbrx_rate = resultArr['MD_RGFW_REXIAN_WAIBAO_MBZT_CONNECTION_RATE_DAY'],
-							wbzx = resultArr['MD_CLIVECENTER_G_29_DAY'],
-							wbzx_rate = resultArr['MD_CLIVECENTER_G_29_RATE_DAY'],
+					var wbrx = resultArr['MD_RGFW_REXIAN_WAIBAO_MBZT_DAY'],
+						wbrx_rate = resultArr['MD_RGFW_REXIAN_WAIBAO_MBZT_CONNECTION_RATE_DAY'],
+						wbzx = resultArr['MD_CLIVECENTER_G_29_DAY'],
+						wbzx_rate = resultArr['MD_CLIVECENTER_G_29_RATE_DAY'],
 
-							wbht = resultArr['MD_RGFW_REXIAN_WAIBAO_HUATUO_DAY'],
-							wbht_rate = resultArr['MD_RGFW_REXIAN_WAIBAO_HUATUO_CONNECTION_RATE_DAY'];
-							wbhf = resultArr['MD_RGFW_REXIAN_WAIBAO_HUAFAN_DAY'],
-							wbhf_rate = resultArr['MD_RGFW_REXIAN_WAIBAO_HUAFAN_CONNECTION_RATE_DAY'];
-							wbws = resultArr['MD_RGFW_REXIAN_WAIBAO_WANSHENG_DAY'],
-							wbws_rate = resultArr['MD_RGFW_REXIAN_WAIBAO_WANSHENG_CONNECTION_RATE_DAY'];
-							wbty = resultArr['MD_RGFW_REXIAN_WAIBAO_TAIYIN_SHUNGJINENG_DAY'],
-							wbty_rate = resultArr['MD_RGFW_REXIAN_WAIBAO_TAIYIN_SHUNGJINENG_CONNECTION_RATE_DAY'];
+						wbht = resultArr['MD_RGFW_REXIAN_WAIBAO_HUATUO_DAY'],
+						wbht_rate = resultArr['MD_RGFW_REXIAN_WAIBAO_HUATUO_CONNECTION_RATE_DAY'];
+					wbhf = resultArr['MD_RGFW_REXIAN_WAIBAO_HUAFAN_DAY'],
+					wbhf_rate = resultArr['MD_RGFW_REXIAN_WAIBAO_HUAFAN_CONNECTION_RATE_DAY'];
+					wbws = resultArr['MD_RGFW_REXIAN_WAIBAO_WANSHENG_DAY'],
+					wbws_rate = resultArr['MD_RGFW_REXIAN_WAIBAO_WANSHENG_CONNECTION_RATE_DAY'];
+					wbty = resultArr['MD_RGFW_REXIAN_WAIBAO_TAIYIN_SHUNGJINENG_DAY'],
+					wbty_rate = resultArr['MD_RGFW_REXIAN_WAIBAO_TAIYIN_SHUNGJINENG_CONNECTION_RATE_DAY'];
 
-							wbtotal = resultArr['MD_RGFW_WAIBAO_RGFWZT_VISITOR_RESPONSE_DAY'];
+					wbtotal = resultArr['MD_RGFW_WAIBAO_RGFWZT_VISITOR_RESPONSE_DAY'];
 
-						wbrx = wbrx === undefined ? 0 : wbrx;
-						wbrx_rate = wbrx_rate === undefined ? 0 : wbrx_rate;
-						wbzx = wbzx === undefined ? 0 : wbzx;
-						wbzx_rate = wbzx_rate === undefined ? 0 : wbzx_rate;
+					wbrx = wbrx === undefined ? 0 : wbrx;
+					wbrx_rate = wbrx_rate === undefined ? 0 : wbrx_rate;
+					wbzx = wbzx === undefined ? 0 : wbzx;
+					wbzx_rate = wbzx_rate === undefined ? 0 : wbzx_rate;
 
-						wbht = wbht === undefined ? 0 : wbht;
-						wbht_rate = wbht_rate === undefined ? 0 : wbht_rate;
-						wbhf = wbhf === undefined ? 0 : wbhf;
-						wbhf_rate = wbhf_rate === undefined ? 0 : wbhf_rate;
-						wbws = wbws === undefined ? 0 : wbws;
-						wbws_rate = wbws_rate === undefined ? 0 : wbws_rate;
-						wbty = wbty === undefined ? 0 : wbty;
-						wbty_rate = wbty_rate === undefined ? 0 : wbty_rate;
+					wbht = wbht === undefined ? 0 : wbht;
+					wbht_rate = wbht_rate === undefined ? 0 : wbht_rate;
+					wbhf = wbhf === undefined ? 0 : wbhf;
+					wbhf_rate = wbhf_rate === undefined ? 0 : wbhf_rate;
+					wbws = wbws === undefined ? 0 : wbws;
+					wbws_rate = wbws_rate === undefined ? 0 : wbws_rate;
+					wbty = wbty === undefined ? 0 : wbty;
+					wbty_rate = wbty_rate === undefined ? 0 : wbty_rate;
 
-						hztotal = hztotal === undefined ? 0 : hztotal;
 
-						var wbRandoms = [
-							[$('#pt-page-4 .row1-left'), (wbrx), tranPercent(wbrx/wb_targetArr[0], 0), tranPercent(wbrx_rate, 0)],
-							[$('#pt-page-4 .row1-right'), (wbzx), tranPercent(wbzx/wb_targetArr[1], 0), tranPercent(wbzx_rate, 0)],
-							[$('#pt-page-4 .row2-left1'), (wbht), tranPercent(wbht/wb_targetArr[2], 0), tranPercent(wbht_rate, 0)],
-							[$('#pt-page-4 .row2-left2'), (wbhf), tranPercent(wbhf/wb_targetArr[3], 0), tranPercent(wbhf_rate, 0)],
-							[$('#pt-page-4 .row2-left3'), (wbws), tranPercent(wbws/wb_targetArr[4], 0), tranPercent(wbws_rate, 0)],
-							[$('#pt-page-4 .row2-left4'), (wbty), tranPercent(wbty/wb_targetArr[5], 0), tranPercent(wbty_rate, 0)],
-							[$('#pt-page-4 .row2-right'), (wbzx), tranPercent(wbzx/wb_targetArr[6], 0), tranPercent(wbzx_rate, 0)]
+
+					var wbRandoms = [
+							[$('#pt-page-4 .row1-left'), (wbrx), tranPercent(wbrx / wb_targetArr[0], 0), tranPercent(wbrx_rate, 0)],
+							[$('#pt-page-4 .row1-right'), (wbzx), tranPercent(wbzx / wb_targetArr[1], 0), tranPercent(wbzx_rate, 0)],
+							[$('#pt-page-4 .row2-left1'), (wbht), tranPercent(wbht / wb_targetArr[2], 0), tranPercent(wbht_rate, 0)],
+							[$('#pt-page-4 .row2-left2'), (wbhf), tranPercent(wbhf / wb_targetArr[3], 0), tranPercent(wbhf_rate, 0)],
+							[$('#pt-page-4 .row2-left3'), (wbws), tranPercent(wbws / wb_targetArr[4], 0), tranPercent(wbws_rate, 0)],
+							[$('#pt-page-4 .row2-left4'), (wbty), tranPercent(wbty / wb_targetArr[5], 0), tranPercent(wbty_rate, 0)],
+							[$('#pt-page-4 .row2-right'), (wbzx), tranPercent(wbzx / wb_targetArr[6], 0), tranPercent(wbzx_rate, 0)]
 						];
 
-						 for(var i = 0, l = wbRandoms.length; i < l; i++){
-							dataValueUpdate(wbRandoms[i][0], wbRandoms[i][1], wbRandoms[i][2], wbRandoms[i][3]);
-						 }
+					for (var i = 0, l = wbRandoms.length; i < l; i++) {
+						dataValueUpdate(wbRandoms[i][0], wbRandoms[i][1], wbRandoms[i][2], wbRandoms[i][3]);
+					}
 
-						 $('#pt-page-4 .count-value').text((wbtotal));
-					});
-				}
+					$('#pt-page-4 .count-value').text((wbtotal));
+				});
+			}
 
-				setTimeout(function(){
-					wbDataUpdate();
-					setInterval(wbDataUpdate, 1000*intervalTime*pagesCount);
-				}, 1000 * intervalTime*3+100);
+			setTimeout(function () {
+				wbDataUpdate();
+				setInterval(wbDataUpdate, 1000 * intervalTime * pagesCount);
+			}, 1000 * intervalTime * 3 + 100);
 
-				//cd data update    成都服务中心页面数据更新
-				 function cdDataUpdate(){
-					var resultArr = [];
-					var codes = [
+			//cd data update    成都服务中心页面数据更新
+			function cdDataUpdate() {
+				var resultArr = [];
+				var codes = [
 						'MD_RGFW_REXIAN_ZIYING_CD_ZL_VISITOR_RESPONSE_DAY',
 						'MD_RGFW_REXIAN_ZIYING_CD_ZL_JCFW_VISITOR_RESPONSE_DAY',
 						'MD_RGFW_REXIAN_ZIYING_CD_ZL_GCJRFW_VISITOR_RESPONSE_DAY',
@@ -995,7 +1105,7 @@
 						'MD_RGFW_REXIAN_ZIYING_CD_ZL_JCFW_CONNECTION_RATE_DAY',
 						'MD_RGFW_REXIAN_ZIYING_CD_ZL_GCJRFW_CONNECTION_RATE_DAY'
 					];
-					var qfs = [
+				var qfs = [
 						'VISITOR_RESPONSE_SELF',
 						'VISITOR_RESPONSE_SELF',
 						'VISITOR_RESPONSE_SELF',
@@ -1005,41 +1115,44 @@
 						'CONNECTION_RATE_SELF'
 					];
 
-					jQuery.getJSON(getRequestUrl(codes.join(','), qfs.join(','), (reqTime + reqCount*1000*pagesCount* intervalTime)), function(json){
-						resultArr = dataPro(json);
-						var cdrx = resultArr['MD_RGFW_REXIAN_ZIYING_CD_ZL_VISITOR_RESPONSE_DAY'],
-							cdrx_rate = resultArr['MD_RGFW_REXIAN_ZIYING_CD_ZL_CONNECTION_RATE_DAY'],
-							cdjc = resultArr['MD_RGFW_REXIAN_ZIYING_CD_ZL_JCFW_VISITOR_RESPONSE_DAY'],
-							cdjc_rate = resultArr['MD_RGFW_REXIAN_ZIYING_CD_ZL_JCFW_CONNECTION_RATE_DAY'],
-							cdjr = resultArr['MD_RGFW_REXIAN_ZIYING_CD_ZL_GCJRFW_VISITOR_RESPONSE_DAY'],
-							cdjr_rate = resultArr['MD_RGFW_REXIAN_ZIYING_CD_ZL_GCJRFW_CONNECTION_RATE_DAY'];
+				jQuery.getJSON(getRequestUrl(codes.join(','), qfs.join(','), getTime()), function (json) {
+					resultArr = dataPro(json);
 
-						cdrx = cdrx === undefined ? 0 : cdrx;
-						cdrx_rate = cdrx_rate === undefined ? 0 : cdrx_rate;
-						cdjc = cdjc === undefined ? 0 : cdjc;
-						cdjc_rate = cdjc_rate === undefined ? 0 : cdjc_rate;
-						cdjr = cdjr === undefined ? 0 : cdjr;
-						cdjr_rate = cdjr_rate === undefined ? 0 : cdjr_rate;
+					var cdrx = resultArr['MD_RGFW_REXIAN_ZIYING_CD_ZL_VISITOR_RESPONSE_DAY'],
+						cdrx_rate = resultArr['MD_RGFW_REXIAN_ZIYING_CD_ZL_CONNECTION_RATE_DAY'],
+						cdjc = resultArr['MD_RGFW_REXIAN_ZIYING_CD_ZL_JCFW_VISITOR_RESPONSE_DAY'],
+						cdjc_rate = resultArr['MD_RGFW_REXIAN_ZIYING_CD_ZL_JCFW_CONNECTION_RATE_DAY'],
+						cdjr = resultArr['MD_RGFW_REXIAN_ZIYING_CD_ZL_GCJRFW_VISITOR_RESPONSE_DAY'],
+						cdjr_rate = resultArr['MD_RGFW_REXIAN_ZIYING_CD_ZL_GCJRFW_CONNECTION_RATE_DAY'];
 
-						var cdRandoms = [
-							[$('#pt-page-2 .row1-left'), (cdrx), tranPercent(cdrx/cd_targetArr[0], 0), tranPercent(cdrx_rate, 0)],
-							[$('#pt-page-2 .row2-left1'), (cdjc), tranPercent(cdjc/cd_targetArr[1], 0), tranPercent(cdjc_rate, 0)],
-							[$('#pt-page-2 .row2-left2'), (cdjr), tranPercent(cdjr/cd_targetArr[2], 0), tranPercent(cdjr_rate, 0)]
+
+					cdrx = cdrx === undefined ? 0 : cdrx;
+					cdrx_rate = cdrx_rate === undefined ? 0 : cdrx_rate;
+					cdjc = cdjc === undefined ? 0 : cdjc;
+					cdjc_rate = cdjc_rate === undefined ? 0 : cdjc_rate;
+					cdjr = cdjr === undefined ? 0 : cdjr;
+					cdjr_rate = cdjr_rate === undefined ? 0 : cdjr_rate;
+
+					var cdRandoms = [
+							[$('#pt-page-2 .row1-left'), (cdrx), tranPercent(cdrx / cd_targetArr[0], 0), tranPercent(cdrx_rate, 0)],
+							[$('#pt-page-2 .row2-left1'), (cdjc), tranPercent(cdjc / cd_targetArr[1], 0), tranPercent(cdjc_rate, 0)],
+							[$('#pt-page-2 .row2-left2'), (cdjr), tranPercent(cdjr / cd_targetArr[2], 0), tranPercent(cdjr_rate, 0)]
 						];
 
-						 for(var i = 0, l = cdRandoms.length; i < l; i++){
-							dataValueUpdate(cdRandoms[i][0], cdRandoms[i][1], cdRandoms[i][2], cdRandoms[i][3]);
-						 }
+					for (var i = 0, l = cdRandoms.length; i < l; i++) {
+						dataValueUpdate(cdRandoms[i][0], cdRandoms[i][1], cdRandoms[i][2], cdRandoms[i][3]);
+					}
 
-						 $('#pt-page-2 .count-value').text((cdrx));
-					});
-				}
+					$('#pt-page-2 .count-value').text((cdrx));
+				});
+			}
 
-				setTimeout(function(){
-					cdDataUpdate();
-					setInterval(cdDataUpdate, 1000*intervalTime*pagesCount);
-				}, 1000 * intervalTime*1+100);
-			})(window);
-		</script>
-	</body>
+			setTimeout(function () {
+				cdDataUpdate();
+				setInterval(cdDataUpdate, 1000 * intervalTime * pagesCount);
+			}, 1000 * intervalTime * 1 + 100);
+		})(window);
+	</script>
+</body>
+
 </html>

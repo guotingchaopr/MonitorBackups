@@ -566,6 +566,7 @@
 			var intervalTime = 8,  //切换屏幕间隔秒数
 				reqCount = 0, //请求次数统计
 				serverUrl = 'http://127.0.0.1/admin/getDataByMddCodeProxy.json?codes=',  //请求地址
+				maxWaitTimeUrl = "http://127.0.0.1/admin/getMaxWaitTime.json?",
 				reqTime = (new Date()).getTime() - 60000,
 				pageElements = document.getElementsByClassName('pt-page'),
 				pagesCount = pageElements.length;
@@ -690,21 +691,19 @@
 				/*  数值页面代码  */
 				/******************/
 				var codes = [
-					'MD_RGFW_REXIAN_ZIYING_AverACWTime_DAY'   //最长等待时长code配置
 				];
-				var qfs = [
-					'AverACWTime'	//最长等待时长qf配置
-				];
+				var qfs = [];
 
-				jQuery.getJSON(getRequestUrl(codes.join(','), qfs.join(','), (reqTime + reqCount*1000*pagesCount* intervalTime)), function(json){
-					var result = dataPro(json);
-					$('.dim_value').html(result[0].toFixed(2)+'<span>秒</span>');
 
+				//getMaxWaitTime.json
+				jQuery.getJSON(maxWaitTimeUrl + '&time=' + (reqTime + reqCount*1000*pagesCount* intervalTime ) + '&callback=?', function(json){
+					var result = json;
+					$('.dim_value').html(result + '<span>秒</span>');
 					setInterval(function(){
 						reqCount++;
-						jQuery.getJSON(getRequestUrl(codes.join(','), qfs.join(','), (reqTime + reqCount*1000*pagesCount* intervalTime)), function(json){
-							var result = dataPro(json);
-							$('.dim_value').html(result[0].toFixed(2)+'<span>秒</span>');
+						jQuery.getJSON(maxWaitTimeUrl + '&time=' + (reqTime + reqCount*1000*pagesCount* intervalTime ) + '&callback=?', function(json){
+							var result = json;
+							$('.dim_value').html(result + '<span>秒</span>');
 						});
 						$('.dim_value').addClass('value-moveDown');
 					}, 1000*intervalTime*pagesCount);

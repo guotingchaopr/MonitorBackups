@@ -1,0 +1,216 @@
+<!Doctype html>
+<html>
+
+<head>
+	<style type="text/css">
+		@font-face {
+                font-family: "Aldrich";
+                src: url('fonts/Aldrich-Regular.ttf') format("truetype");
+        }
+		body {
+			margin: 0;
+			padding: 0;
+			width: 3840px;
+			height: 2160px;
+			background: url(img/bg.png);
+			font-family: "Aldrich";
+		}
+		.serverFlow_main {
+			position: absolute;
+			color: #fd8a25;
+		}
+		.serverFlow_main p{
+			font-size: 40px;
+			position: absolute;
+			left: 489px;
+			width: 200px;
+			text-align: center;
+		}
+		/*** 能量块节点位置 ***/
+		.serverFlow_main #c_95188 {
+			position: absolute;
+			width: 535px;
+			height: 350px;
+			top: 710px;
+			left: 380px;
+		}
+		.serverFlow_main #pc {
+			position: absolute;
+			width: 535px;
+			height: 350px;
+			left: 380px;
+			top: 1293px;
+		}
+		.serverFlow_main #wireless {
+			position: absolute;
+			width: 535px;
+			height: 350px;
+			left: 380px;
+			top: 1790px;
+		}
+		/*** 能量块节点位置 ***/
+		.serverFlow_main ul {
+			background: transparent;
+			list-style: none;
+		}
+		.serverFlow_main ul li {
+			position: relative;
+			float: left;
+			margin: 10px;
+			background: url(img/bendBox.png);
+			width: 72px;
+			height: 48px;
+		}
+		.serverFlow_main ul li:first-child {
+			top: -45px;
+			left: 104px;
+			transform: rotate(156deg);
+		}
+		.serverFlow_main ul li:nth-child(2) {
+			top: -18px;
+			left: -52px;
+			transform: rotate(125deg)
+		}
+		.serverFlow_main ul li:nth-child(3) {
+			top: 39px;
+			left: -183px;
+			transform: rotate(93deg);
+		}
+		.serverFlow_main ul li:nth-child(4) {
+			top: 107px;
+			left: -280px;
+			transform: rotate(62deg);
+		}
+		.serverFlow_main ul li:nth-child(5) {
+			top: 170px;
+			left: -339px;
+			transform: rotate(30deg);
+		}
+		.serverFlow_main ul li:nth-child(6) {
+			top: 137px;
+			left: 89px;
+			transform: rotate(0deg);
+		}
+		.serverFlow_main ul>li:nth-child(n+7) {
+			background: url(img/emptyBox.png);
+			width: 68px;
+			height: 34px;
+			margin: 0;
+			margin-left: 3px;
+			top: 162px;
+			left: 80px;
+		}
+
+
+
+		/*** 服务节点能量球光圈  ***/
+		#circle_95188{
+			top: 723px;
+			left: 473px;
+			position: absolute;
+			-webkit-animation: smallCircle 3s linear infinite;
+		}
+		#circle_pc{
+			top: 1304px;
+			left: 473px;
+			position: absolute;
+			-webkit-animation: smallCircle 3s linear infinite;
+		}
+		#circle_wireless{
+			top: 1801px;
+			left: 473px;
+			position: absolute;
+			-webkit-animation: smallCircle 3s linear infinite;
+		}
+		/*** 服务节点能量球光圈  ***/
+	@-webkit-keyframes smallCircle{
+		0%{
+			transform: rotate(0deg);
+		}
+		100%{
+			transform: rotate(360deg);
+		}
+	}
+	</style>
+</head>
+
+<body>
+	<div id="serverFlow_main" class="serverFlow_main">
+		<div id="c_95188">
+			<ul class="valueProgress">
+				<li>
+				</li>
+				<li>
+				</li>
+				<li>
+				</li>
+				<li>
+				</li>
+				<li>
+				</li>
+				<li>
+				</li>
+				<li>
+				</li>
+				<li>
+				</li>
+				<li>
+				</li>
+				<li>
+				</li>
+			</ul>
+		</div>
+		<div id="pc">
+			<ul class="valueProgress">
+				<li>
+				</li>
+				<li>
+				</li>
+				<li>
+				</li>
+				<li>
+				</li>
+				<li>
+				</li>
+				<li>
+				</li>
+				<li>
+				</li>
+				<li>
+				</li>
+				<li>
+				</li>
+				<li>
+				</li>
+			</ul>
+		</div>
+		<div id="wireless">
+			<ul class="valueProgress">
+				<li></li>
+				<li></li>
+				<li>
+				</li>
+				<li>
+				</li>
+				<li>
+				</li>
+				<li>
+				</li>
+				<li>
+				</li>
+				<li>
+				</li>
+				<li>
+				</li>
+				<li>
+				</li>
+			</ul>
+		</div>
+		<img  src="img/samllCircle.png"  id="circle_95188" />
+		<img  src="img/samllCircle.png"  id="circle_pc" />
+		<img  src="img/samllCircle.png"  id="circle_wireless" />
+	</div>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+	<script src="js/main.js" type="text/javascript"></script>
+</body>
+</html>

@@ -282,8 +282,8 @@ body {
 
 #robot2onlieTrack{
 	position: absolute;
-	left: 410px;
-	top:  660px;
+	left: 700px;
+	top:  565px;
 	-webkit-animation: robot2onlieTrack 7s linear infinite;
 }
 
@@ -413,12 +413,12 @@ body {
 
 @-webkit-keyframes robot2onlieTrack {
 	0% {
-		left: 410px;
-		top:  660px;
-	}
-	100% {
 		left: 700px;
 		top:  565px;
+	}
+	100% {
+		left: 410px;
+		top:  660px;
 	}
 }
 

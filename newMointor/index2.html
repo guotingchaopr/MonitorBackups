@@ -1,0 +1,65 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>canvas</title>
+</head>
+
+<body>
+<canvas id="canvas" width="300" height="300">
+<script>
+
+window.onload = function(){
+	var canvas = document.getElementById("canvas");
+	var ctx = canvas.getContext("2d");
+	var W = canvas.width;
+	var H = canvas.height;
+	var deg=0,new_deg=0,dif=0;
+	var loop,re_loop;
+	var text,text_w;
+
+	function init(){
+		ctx.clearRect(0,0,W,H);
+		ctx.beginPath();
+		ctx.strokeStyle="#333";
+		ctx.lineWidth=30;
+		ctx.arc(W/2,H/2,100,0,Math.PI*2,false);
+		ctx.stroke();
+
+		var r = deg*Math.PI/180;
+		ctx.beginPath();
+		ctx.strokeStyle = "lightgreen";
+		ctx.lineWidth=30;
+		console.log(r-1*Math.PI/180);
+		ctx.arc(W/2,H/2,100,180*Math.PI/180,r-180*Math.PI/180,0);
+		ctx.stroke();
+
+		ctx.fillStyle="#f00";
+		ctx.font="50px abc";
+		text = Math.floor(deg/360*100)+"%";
+		text_w = ctx.measureText(text).width;
+		ctx.fillText(text,W/2 - text_w/2,H/2+15);
+	}
+
+
+	function draw(){
+		new_deg = Math.round(Math.random()*360);
+		dif = new_deg-deg;
+		loop = setInterval(to,1000/dif);
+	}
+	function to(){
+		if(deg == new_deg){
+			clearInterval(loop);
+		}
+		if(deg<new_deg){
+			deg++;
+		}else{
+			deg--;
+		}
+		init();
+	}
+	draw();
+	re_loop = setInterval(draw,2000);
+}
+</script>
+</body>
+</html>

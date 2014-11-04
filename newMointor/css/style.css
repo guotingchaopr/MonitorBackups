@@ -1,0 +1,589 @@
+@font-face {
+	font-family: "Aldrich";
+	src: url('../fonts/Aldrich-Regular.ttf') format("truetype");
+}
+@-webkit-keyframes arcwise {
+	from {
+		transform: rotate(-120deg);
+	}
+	to {
+		transform: rotate(-60deg);
+	}
+}
+@-webkit-keyframes bigarcwise {
+	from {
+		transform: rotate(-125deg);
+	}
+	to {
+		transform: rotate(-55deg);
+	}
+}
+@-webkit-keyframes midarcwise {
+	from {
+		transform: rotate(-130deg);
+	}
+	to {
+		transform: rotate(-50deg);
+	}
+}
+@-webkit-keyframes clockwise {
+	from {
+		transform: rotate(-90deg);
+	}
+	to {
+		transform: rotate(0);
+	}
+}
+@-webkit-keyframes anticlockwise {
+	from {
+		transform: rotate(90deg);
+	}
+	to {
+		transform: rotate(0);
+	}
+}
+@-webkit-keyframes wb-translateX {
+	100% {
+		transform: translateX(90px);
+	}
+}
+@-webkit-keyframes aq-translateX {
+	15% {
+		transform: translate(44px, 0);
+	}
+	60% {
+		transform: translate(44px, -135px);
+	}
+	100% {
+		transform: translate(90px, -135px);
+	}
+}
+@-webkit-keyframes zcx-translateX {
+	100% {
+		transform: translateY(-90px);
+	}
+}
+@-webkit-keyframes moveToLeft {
+	to {
+		-webkit-transform: translateX(-70%);
+		opacity: 0;
+	}
+}
+@-webkit-keyframes moveFromLeft {
+	from {
+		-webkit-transform: translateX(-70%);
+		opacity: 0;
+	}
+}
+body {
+	width: 3840px;
+	height: 2160px;
+	background: url('../images/background.jpg') no-repeat;
+	font-family: "Aldrich", cursive, monospace;
+	position: relative;
+	margin: 0;
+	padding: 0;
+}
+/*** 服务部分  ****/
+
+.serverFlow_main {
+	position: absolute;
+	color: #fd8a25;
+}
+.serverFlow_main p {
+	font-size: 40px;
+	position: absolute;
+	left: 489px;
+	width: 200px;
+	text-align: center;
+}
+/*** 能量块节点位置 ***/
+
+.serverFlow_main #c_95188 {
+	position: absolute;
+	width: 535px;
+	height: 350px;
+	top: 710px;
+	left: 380px;
+}
+.serverFlow_main #pc {
+	position: absolute;
+	width: 535px;
+	height: 350px;
+	left: 380px;
+	top: 1293px;
+}
+.serverFlow_main #wireless {
+	position: absolute;
+	width: 535px;
+	height: 350px;
+	left: 380px;
+	top: 1790px;
+}
+/*** 能量块节点位置 ***/
+
+.serverFlow_main ul {
+	background: transparent;
+	list-style: none;
+}
+.serverFlow_main ul li {
+	position: relative;
+	float: left;
+	margin: 10px;
+	background: url(../images/bendBox.png);
+	width: 72px;
+	height: 48px;
+}
+.serverFlow_main ul li:first-child {
+	top: -47px;
+	left: 104px;
+	transform: rotate(158deg);
+}
+.serverFlow_main ul li:nth-child(2) {
+	top: -18px;
+	left: -52px;
+	transform: rotate(125deg)
+}
+.serverFlow_main ul li:nth-child(3) {
+	top: 39px;
+	left: -183px;
+	transform: rotate(93deg);
+}
+.serverFlow_main ul li:nth-child(4) {
+	top: 107px;
+	left: -280px;
+	transform: rotate(62deg);
+}
+.serverFlow_main ul li:nth-child(5) {
+	top: 170px;
+	left: -339px;
+	transform: rotate(30deg);
+}
+.serverFlow_main ul li:nth-child(6) {
+	top: 137px;
+	left: 89px;
+	transform: rotate(0deg);
+}
+.serverFlow_main ul>li:nth-child(n+7) {
+	background: url(../images/emptyBox.png);
+	width: 68px;
+	height: 34px;
+	margin: 0;
+	margin-left: 3px;
+	top: 162px;
+	left: 80px;
+}
+/*** 服务节点能量球光圈  ***/
+
+#circle_95188 {
+	top: 723px;
+	left: 473px;
+	position: absolute;
+	-webkit-animation: smallCircle 3s linear infinite;
+}
+#circle_pc {
+	top: 1304px;
+	left: 473px;
+	position: absolute;
+	-webkit-animation: smallCircle 3s linear infinite;
+}
+#circle_wireless {
+	top: 1801px;
+	left: 473px;
+	position: absolute;
+	-webkit-animation: smallCircle 3s linear infinite;
+}
+/*** 主节点 ***/
+
+.mainNode {
+	float: left;
+	position: absolute;
+}
+.mainNode .times {
+	position: relative;
+	top: 32px;
+	left: 550px;
+	text-align: center;
+}
+.mainNode .times p {
+	width: 300px;
+	color: #57c8da;
+	font-size: 60px;
+	line-height: 5px;
+}
+.mainNode .mainCircle {
+	position: absolute;
+}
+.mainNode .mainCircle img {
+	position: absolute;
+}
+.mainNode .mainCircle .outCir {
+	top: 30px;
+	left: 65px;
+	-webkit-animation: outCir 3s linear infinite;
+}
+.mainNode .mainCircle .innerCir {
+	top: 35px;
+	left: 80px;
+	-webkit-animation: innerCir 3s linear infinite;
+}
+.mainNode .mainCircle #mainVal {
+	width: 300px;
+	font-size: 50px;
+	top: 200px;
+	left: 180px;
+	color: white;
+	text-align: center;
+	position: absolute;
+}
+.mainNode #circleCanvas {
+	position: absolute;
+	top: 80px;
+	left: 130px;
+}
+/*** 服务节点能量球光圈  ***/
+
+@-webkit-keyframes smallCircle {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+/*** 主节点能量球光圈动画 -外  ***/
+
+@-webkit-keyframes outCir {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+/*** 主节点能量球光圈动画 -内  ***/
+
+@-webkit-keyframes innerCir {
+	0% {
+		transform: rotate(360deg);
+	}
+	100% {
+		transform: rotate(0deg);
+	}
+}
+/* 公用CSS */
+
+.pos_ab {
+	position: absolute;
+}
+.name_color {
+	color: #854d20;
+	font-family: '微软雅黑 Regular', '微软雅黑';
+}
+.value_color {
+	color: #FD8A25;
+}
+.name_color font {
+	font-size: 21px;
+}
+.font-aldrich {
+	font-family: 'Aldrich', sans-serif;
+}
+.dv-stream-circle {
+	-webkit-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+}
+.dv-stream-circle div {
+	-webkit-filter: blur(2px);
+	filter: blur(2px);
+	-webkit-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+}
+.dv-stream-circle p {
+	-webkit-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+}
+/* 人工呼入--曲线图 */
+
+.t_value {
+	width: 340px;
+	height: 125px;
+	top: 473px;
+	line-height: 125px;
+	font-size: 64px;
+	text-align: center;
+}
+.self_service_value {
+	left: 1375px;
+}
+.total_callin_value {
+	left: 2158px;
+}
+.total_callsuccess_value {
+	left: 2938px;
+}
+.fill_block_container {
+	height: 170px;
+	width: 192px;
+	display: inline-block;
+	overflow: hidden;
+	font-size: 40px;
+	text-align: center;
+	line-height: 170px;
+}
+.fill_block {
+	background: url('../images/waterspout.png') no-repeat;
+	display: inline-block;
+	height: 0;
+	width: 186px;
+	padding: 0 3px;
+	bottom: 0;
+	left: 0;
+}
+.fill_block_container span {
+	color: #FD8A25;
+	display: inline-block;
+	width: 186px;
+}
+.rx_callin {
+	top: 740px;
+	left: 1947px;
+}
+.zx_callin {
+	top: 1468px;
+	left: 1947px;
+}
+.zfb_callin,
+.pcdt_callin,
+.pcxb_callin,
+.wxxb_callin,
+.wxdt_callin {
+	top: 740px;
+	left: 733px;
+}
+.pcdt_callin {
+	top: 1121px;
+}
+.pcxb_callin {
+	top: 1323px;
+}
+.wxxb_callin {
+	top: 1618px;
+}
+.wxdt_callin {
+	top: 1820px;
+}
+#rx_callin_container {
+	top: 736px;
+	left: 2148px;
+}
+#zx_callin_container {
+	top: 1464px;
+	left: 2148px;
+}
+.curve_value {
+	color: #FD8A25;
+	font-size: 24px;
+}
+.rx_time,
+.zx_time {
+	left: 2158px;
+	font-size: 17px;
+}
+.rx_time,
+.rx_callin_value,
+.rx_callrate_value {
+	top: 690px;
+}
+.zx_time,
+.zx_callin_value,
+.zx_callrate_value {
+	top: 1421px;
+}
+.rx_time {
+	top: 694px;
+}
+.zx_time {
+	top: 1425px;
+}
+.rx_callin_value,
+.zx_callin_value {
+	left: 2333px;
+}
+.rx_callrate_value,
+.zx_callrate_value {
+	left: 2503px;
+}
+/* 漏斗部分canvas控制 */
+
+canvas {
+	background-color: transparent;
+}
+#rx_canvas {
+	top: 744px;
+	left: 2777px;
+}
+#zx_canvas {
+	top: 1460px;
+	left: 2777px;
+}
+.value_container {
+	width: 580px;
+	height: 60px;
+	line-height: 60px;
+	text-align: center;
+	font-size: 40px;
+	color: #FD8A25;
+	font-weight: bolder;
+}
+#rx_value_container {
+	top: 663px;
+	left: 2798px;
+}
+#zx_value_container {
+	top: 1393px;
+	left: 2798px;
+}
+.rx_value,
+.zx_value {
+	margin-left: 12px;
+}
+.zyzl_container,
+.zc_container,
+.yzj_container {
+	top: 798px;
+	left: 3488px;
+	color: #FD8A25;
+	font-size: 29px;
+}
+.zc_container {
+	top: 1473px;
+}
+.yzj_container {
+	top: 1625px;
+}
+.zc_container,
+.yzj_container {
+	padding-left: 5px;
+}
+.rx_name,
+.zx_name {
+	width: 202px;
+	display: inline-block;
+}
+.zy_name,
+.zy_value {
+	width: 230px;
+	display: inline-block;
+	text-align: center;
+	margin-top: 2px;
+}
+.name-moveToLeft {
+	-webkit-animation: moveToLeft .7s ease-in-out both;
+}
+.name-moveFromLeft {
+	-webkit-animation: moveFromLeft .7s ease-in-out both;
+}
+.rate_process {
+	display: inline-block;
+	margin: 0;
+}
+.rate_process li {
+	list-style: none;
+	display: inline-block;
+	;
+	width: 25px;
+	height: 6px;
+	margin-left: -7px;
+	background: url('../images/process2.png') no-repeat;
+}
+.zy_process {
+	top: 876px;
+	left: 3453px;
+}
+.zc_process {
+	top: 1509px;
+	left: 3453px;
+}
+.yzj_process {
+	top: 1661px;
+	left: 3453px;
+}
+/* 球体动画控制 */
+
+.global_container {
+	width: 74px;
+	height: 18px;
+	text-align: center;
+	display: inline-block;
+	left: 3396px;
+	top: 828px;
+	transform-origin: 0 center;
+}
+.global_container img,
+.global_div img {
+	border-radius: 15px;
+}
+.global_container_clockwise {
+	-webkit-animation: clockwise 3s ease-in infinite;
+}
+.global_container_anticlockwise {
+	-webkit-animation: anticlockwise 3s ease-in infinite;
+}
+.sertoself_global_container {
+	text-align: right;
+	width: 810px;
+	left: 1149px;
+	top: 1057px;
+}
+.selftocallin_global_container {
+	text-align: right;
+	width: 680px;
+	left: 1933px;
+	top: 917px;
+}
+.selftocallsuc_global_container {
+	text-align: right;
+	width: 598px;
+	left: 2703px;
+	top: 814px;
+}
+.sertocallin_global_container {
+	text-align: right;
+	width: 1420px;
+	left: 1526px;
+	top: 1540px;
+}
+.global_container_arcwise {
+	-webkit-animation: arcwise 3s ease-in infinite;
+}
+.global_container_bigarcwise {
+	-webkit-animation: bigarcwise 3s ease-in infinite;
+}
+.global_container_midarcwise {
+	-webkit-animation: midarcwise 3s ease-in infinite;
+}
+.global_div {
+	height: 18px;
+	width: 18px;
+}
+.wb_global {
+	top: 1488px;
+	left: 3388px;
+	-webkit-animation: wb-translateX 3s ease-in infinite;
+}
+.aq_global {
+	top: 1622px;
+	left: 3388px;
+	-webkit-animation: aq-translateX 3s ease-in infinite;
+}
+.yzx_global {
+	top: 1640px;
+	left: 3388px;
+	-webkit-animation: wb-translateX 3s ease-in infinite;
+}
+.zcx_global {
+	top: 1608px;
+	left: 3608px;
+	-webkit-animation: zcx-translateX 3s ease-in infinite;
+}

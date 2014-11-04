@@ -1,0 +1,243 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="edge" />
+        <title>新版监控大屏</title>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+
+    <body>
+		<!-- 服务部分 -->
+		<div class="mainNode">
+			<div class="mainCircle">
+				<img src="images/outCir.png"  class="outCir" />
+				<img src="images/innerCir.png" class="innerCir" />
+				<p id="mainVal"></p>
+			</div>
+			<div class="times">
+				<p id="dateElement"></p>
+				<p id="timeElement"></p>
+			</div>
+			<canvas id="circleCanvas" width="420" height="420"></canvas>
+		</div>
+
+	<div id="serverFlow_main" class="serverFlow_main">
+		<div id="c_95188">
+			<ul class="valueProgress">
+				<li>
+				</li>
+				<li>
+				</li>
+				<li>
+				</li>
+				<li>
+				</li>
+				<li>
+				</li>
+				<li>
+				</li>
+				<li>
+				</li>
+				<li>
+				</li>
+				<li>
+				</li>
+				<li>
+				</li>
+			</ul>
+		</div>
+		<div id="pc">
+			<ul class="valueProgress">
+				<li>
+				</li>
+				<li>
+				</li>
+				<li>
+				</li>
+				<li>
+				</li>
+				<li>
+				</li>
+				<li>
+				</li>
+				<li>
+				</li>
+				<li>
+				</li>
+				<li>
+				</li>
+				<li>
+				</li>
+			</ul>
+		</div>
+		<div id="wireless">
+			<ul class="valueProgress">
+				<li></li>
+				<li></li>
+				<li>
+				</li>
+				<li>
+				</li>
+				<li>
+				</li>
+				<li>
+				</li>
+				<li>
+				</li>
+				<li>
+				</li>
+				<li>
+				</li>
+				<li>
+				</li>
+			</ul>
+		</div>
+		<img  src="images/samllCircle.png"  id="circle_95188" />
+		<img  src="images/samllCircle.png"  id="circle_pc" />
+		<img  src="images/samllCircle.png"  id="circle_wireless" />
+	</div>
+
+        <!-- 总数据块控制 -->
+        <div class="t_value pos_ab value_color self_service_value"></div>
+        <div class="t_value pos_ab value_color total_callin_value"></div>
+        <div class="t_value pos_ab value_color total_callsuccess_value"></div>
+        <!-- 总数据块控制 -->
+
+        <!-- banner 球体动画控制 -->
+        <div class="pos_ab global_container sertoself_global_container global_container_arcwise">
+            <img src="images/flash_global.png" alt="球体">
+        </div>
+        <div class="pos_ab global_container selftocallin_global_container global_container_bigarcwise">
+            <img src="images/flash_global.png" alt="球体">
+        </div>
+        <div class="pos_ab global_container selftocallsuc_global_container global_container_midarcwise">
+            <img src="images/flash_global.png" alt="球体">
+        </div>
+        <div class="pos_ab global_container sertocallin_global_container global_container_bigarcwise">
+            <img src="images/flash_global.png" alt="球体">
+        </div>
+        <!-- banner 球体动画控制 -->
+
+        <!-- 人工呼入量 水柱部分 -->
+        <div class="fill_block_container pos_ab rx_callin">
+            <div class="fill_block pos_ab"></div>
+        </div>
+        <div class="fill_block_container pos_ab zx_callin">
+            <div class="fill_block pos_ab"></div>
+        </div>
+        <div class="fill_block_container pos_ab zfb_callin">
+            <div class="fill_block pos_ab"></div>
+        </div>
+        <div class="fill_block_container pos_ab pcdt_callin">
+            <div class="fill_block pos_ab"></div>
+        </div>
+        <div class="fill_block_container pos_ab pcxb_callin">
+            <div class="fill_block pos_ab"></div>
+        </div>
+        <div class="fill_block_container pos_ab wxxb_callin">
+            <div class="fill_block pos_ab"></div>
+        </div>
+        <div class="fill_block_container pos_ab wxdt_callin">
+            <div class="fill_block pos_ab"></div>
+        </div>
+
+        <!-- 曲线图值显示 -->
+        <div class="curve_value rx_time pos_ab"></div>
+        <div class="curve_value rx_callin_value pos_ab"></div>
+        <div class="curve_value rx_callrate_value pos_ab"></div>
+
+        <div class="curve_value zx_time pos_ab"></div>
+        <div class="curve_value zx_callin_value pos_ab"></div>
+        <div class="curve_value zx_callrate_value pos_ab"></div>
+        <!-- 曲线图值显示 -->
+
+        <!-- 曲线图 -->
+        <div id="rx_callin_container" class="pos_ab" style="height: 177px; width: 430px;"></div>
+        <div id="zx_callin_container" class="pos_ab" style="height: 177px; width: 430px;"></div>
+        <!-- 曲线图 -->
+
+        <!-- 人工呼入量 -->
+
+        <!-- 人工接起量 -->
+        <canvas id="rx_canvas" class="pos_ab" width=450 height=170></canvas>
+        <canvas id="zx_canvas" class="pos_ab" width=450 height=215></canvas>
+
+        <div id="rx_value_container" class="value_container pos_ab">
+            <span class="rx_name name_color">热线接起量</span>
+            <span class="rx_value value_color"></span>
+        </div>
+
+        <div id="zx_value_container" class="value_container pos_ab">
+            <span class="zx_name name_color">在线接起量</span>
+            <span class="zx_value value_color"></span>
+        </div>
+        <div class="zyzl_container pos_ab">
+            <span class="zy_name name_color">自营总量<font>（含转接）</font></span><br/>
+            <span class="zy_value value_color"></span>
+        </div>
+        <div class="zc_container pos_ab">
+            <span class="zc_name name_color">支持线</span>
+            <span class="zc_value value_color"></span>
+        </div>
+        <div class="yzj_container pos_ab">
+            <span class="yzj_name name_color">云转接</span>
+            <span class="yzj_value value_color"></span>
+        </div>
+
+        <ul class="rate_process pos_ab zy_process">
+            <li class="process1"></li>
+            <li class="process2"></li>
+            <li class="process3"></li>
+            <li class="process4"></li>
+            <li class="process5"></li>
+        </ul>
+        <ul class="rate_process pos_ab zc_process">
+            <li class="process1"></li>
+            <li class="process2"></li>
+            <li class="process3"></li>
+            <li class="process4"></li>
+            <li class="process5"></li>
+        </ul>
+        <ul class="rate_process pos_ab yzj_process">
+            <li class="process1"></li>
+            <li class="process2"></li>
+            <li class="process3"></li>
+            <li class="process4"></li>
+            <li class="process5"></li>
+        </ul>
+
+            <!-- 人工球体动画 -->
+            <div class="pos_ab global_container global_container_clockwise">
+                <img src="images/flash_global.png" alt="球体">
+            </div>
+            <div class="pos_ab global_container global_container_anticlockwise">
+                <img src="images/flash_global.png" alt="球体">
+            </div>
+            <div class="pos_ab global_div wb_global">
+                <img src="images/flash_global.png" alt="球体">
+            </div>
+            <div class="pos_ab global_div aq_global">
+                <img src="images/flash_global.png" alt="球体">
+            </div>
+            <div class="pos_ab global_div yzx_global">
+                <img src="images/flash_global.png" alt="球体">
+            </div>
+            <div class="pos_ab global_div zcx_global">
+                <img src="images/flash_global.png" alt="球体">
+            </div>
+            <!-- 人工球体动画 -->
+
+        <!-- 人工接起量 -->
+
+        <script src="lib/jquery-1.9.1.min.js"></script>
+        <script src="lib/highcharts.js"></script>
+        <script src="lib/snap.js"></script>
+        <script src="js/Funnel.js"></script>
+        <script src="js/curve.js"></script>
+        <script src="js/stream-view.js"></script>
+        <script src="js/reqData.js"></script>
+		<script src="js/main.js"></script>
+    </body>
+</html>

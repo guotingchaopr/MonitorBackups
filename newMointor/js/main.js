@@ -2,6 +2,7 @@ $(function () {
 
 	var main_url = "https://csmonitor.alipay.com/admin/getServerTime.json";
 	var url_95188 = "http://10.14.53.226:8888/sentiment/hotline.htm";
+	var server_url = "https://csmonitor.alipay.com/admin/getDataByMddCodeProxy.json";
 
 	/** 时间戳 ***/
 	var date_Element = document.getElementById("dateElement"),
@@ -10,26 +11,32 @@ $(function () {
 
 	/***  主节点  ***/
 	var mainNode = document.createElement("P"),
-		mainNode_URV = 200000, //主节点高度上限
+		mainNode_URV = 2000000, //主节点高度上限
+		main_MddCODE = "MD_DAPAN_VISITOR_INFLOW_DAY",
+		main_QULIFY  = "VISITOR_INFLOW",
 		circleCanvas = document.getElementById("circleCanvas").getContext("2d");
 	var beginPoint = 180; //主节点开始弧度
 	var effects_Loop = 0; //大圈效果
 
 	/***  服务配置   URV : 上限  FRV ：下限 ***/
 	var server95188 = {
-			URV: 10000,
+			URV: 600000,
 			FRV: 1000,
 			visualName: "c_95188"
 		},
 		serverPC = {
-			URV: 20000,
+			URV: 600000,
 			FRV: 1000,
-			visualName: "pc"
+			visualName: "pc",
+			MDD_CODE: "MD_PC_VISITOR_INFLOW_DAY",
+			QULIFY: "VISITOR_INFLOW"
 		},
 		serverWireless = {
-			URV: 20000,
+			URV: 600000,
 			FRV: 1000,
-			visualName: "wireless"
+			visualName: "wireless",
+			MDD_CODE: "MD_WS_VISITOR_INFLOW_DAY",
+			QULIFY: "VISITOR_INFLOW"
 		}
 
 
@@ -38,24 +45,6 @@ $(function () {
 	/** 初始化 **/
 	var init = function () {
 
-
-		/** 时间轮询 **/
-		setInterval(function () {
-			$.getJSON(main_url + "?callback=?", function (json) {
-				var time = util_formatDate(new Date(json));
-				date_Element.innerText = time[0];
-				time_Element.innerText = time[1];
-			});
-		}, 5000);
-		//主节点
-		pollDataForMainNode();
-		//初始化主节点圆弧动画
-		circleCanvas.beginPath();
-		circleCanvas.arc(198, 200, 168, beginPoint * Math.PI, beginPoint * Math.PI, 0);
-		circleCanvas.strokeStyle = "#57c8da";
-		circleCanvas.lineWidth = "40";
-		circleCanvas.stroke();
-		circleCanvas.closePath();
 		//服务部分
 		var server95188_Val = document.createElement("p"),
 			serverPC_Val = document.createElement("p"),
@@ -76,19 +65,20 @@ $(function () {
 		document.getElementById('serverFlow_main').appendChild(server95188_Val);
 		document.getElementById('serverFlow_main').appendChild(serverPC_Val);
 		document.getElementById('serverFlow_main').appendChild(serverWireless_Val);
+
+		handleData(); //初始化调动一波
 		pollDataForServer();
+
 	}
 
 
 
 
 	/** 主节点数据轮询 ***/
-	var pollDataForMainNode = function () {
+	var pollDataForMainNode = function (value) {
 		/** 主要数据轮询 **/
-		var mainVal = (Math.random() * 200000 >> 0);
-		mainCircleProgress(mainVal);
-		$("#mainVal").text(mainVal);
-
+		mainCircleProgress(value);
+		$("#mainVal").text(value);
 	}
 
 
@@ -97,11 +87,14 @@ $(function () {
 		var sigleNodeVal = mainNode_URV / 100 >> 0, //单节点值
 			percent = value / sigleNodeVal >> 0; //当前百分比
 		percent = percent >= 100 ? 99 : percent;
+
 		//当前换算后节点
 		var current_end_point = ((percent * 0.01) * 360 * Math.PI / beginPoint) - (beginPoint - 2) * Math.PI / beginPoint,
 			current_action_point = (beginPoint + 2) * Math.PI / beginPoint;
 
-		console.log(sigleNodeVal + " : " + percent + " : " + current_end_point);
+		//console.log(sigleNodeVal + " : " + percent + " : " + current_end_point);
+
+
 		//重绘
 		circleCanvas.clearRect(0, 0, 420, 420);
 		circleCanvas.beginPath();
@@ -110,20 +103,22 @@ $(function () {
 		circleCanvas.lineWidth = "45";
 		circleCanvas.stroke();
 		circleCanvas.closePath();
-		if(percent<98)circleProgressEffects(percent);
+		if (effects_Loop!=0)clearInterval(effects_Loop);
+		if (percent < 98) circleProgressEffects(percent);
 	}
 
 	/*** 大圈特效 ***/
 	var circleProgressEffects = function (value) {
-		var tmp_value = value+0.2;
+		var tmp_value = value + 0.2;
 		effects_Loop = setInterval(function () {
-			if(tmp_value>value){
-				tmp_value=tmp_value-0.2 ;
-			}else{
-				tmp_value=tmp_value+0.2 ;
+			if (tmp_value > value) {
+				tmp_value = tmp_value - 0.2;
+			} else {
+				tmp_value = tmp_value + 0.2;
 			}
-			var current_end_point = ((tmp_value * 0.01) * 360 * Math.PI / beginPoint) - (beginPoint - 2) * Math.PI/beginPoint,
+			var current_end_point = ((tmp_value * 0.01) * 360 * Math.PI / beginPoint) - (beginPoint - 2) * Math.PI / beginPoint,
 				current_action_point = (beginPoint + 2) * Math.PI / beginPoint;
+
 			//特效重绘
 			circleCanvas.clearRect(0, 0, 420, 420);
 			circleCanvas.beginPath();
@@ -132,22 +127,40 @@ $(function () {
 			circleCanvas.lineWidth = "45";
 			circleCanvas.stroke();
 			circleCanvas.closePath();
-		}, 60);
+		}, 500);
 	}
 
 	/*** 服务数据轮询 ***/
 	var pollDataForServer = function () {
 		setInterval(function () {
-			$.getJSON(url_95188 + "?callback=?", function (json) {
-				monitorListener(server95188, json.total);
-			});
-
-			monitorListener(serverPC, (Math.random() * 20000 >> 0));
-			monitorListener(serverWireless, (Math.random() * 20000 >> 0));
-		}, 1000);
+			handleData();
+		}, 5000);
 	}
 
+	/**
+	   数据组装
+	 **/
+	var handleData = function () {
+		var codes = [main_MddCODE,serverPC.MDD_CODE, serverWireless.MDD_CODE],
+			qulifys = [main_QULIFY,serverPC.QULIFY, serverWireless.QULIFY];
 
+		$.getJSON(url_95188 + "?callback=?", function (json) {
+			monitorListener(server95188, json.total);
+		});
+
+		$.getJSON(server_url + "?codes=" + codes + "&qualify=" + qulifys + "&time=" + getTime() + "&callback=?", function (json) {
+			pollDataForMainNode(json[0].qualifyMap.VISITOR_INFLOW);
+			monitorListener(serverPC, json[1].qualifyMap.VISITOR_INFLOW);
+			monitorListener(serverWireless, json[2].qualifyMap.VISITOR_INFLOW);
+		});
+
+		/** 时间轮询 **/
+		$.getJSON(main_url + "?callback=?", function (json) {
+			var time = util_formatDate(new Date(json));
+			date_Element.innerText = time[0];
+			time_Element.innerText = time[1];
+		});
+	}
 
 	/** 数据监听触发器 **/
 	var monitorListener = function (obj, value) {
@@ -198,4 +211,11 @@ $(function () {
 	}
 
 	init();
+
+
+	function getTime(){
+		var time = 60 * 1000;
+		//console.log(time);
+		return time;
+	}
 });

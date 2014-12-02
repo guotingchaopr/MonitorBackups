@@ -1,18 +1,28 @@
-var https = require('https'),
+/*
+var http = require('http'),
 	fs = require('fs'),
+
+*/
+
+
+
+var http=require('http'),
 	urllib = require("url");
+var server=new http.Server();
+server.on('request',function(req,res){
+   var params = urllib.parse(req.url, true);
+		console.log(params);
+		console.log(params.query.callback);
+		var str = params.query.callback + '(' + JSON.stringify("{'total':'5000'}") + ')'; //jsonp
+		res.writeHead(200,{'Content-Type':'text/json'});
+		res.end(str);
+});
 
-
-var options = {
-	key: fs.readFileSync(__dirname+'/privatekey.pem'),
-	cert: fs.readFileSync(__dirname+'/certificate.pem')
-}
-
-
-https.createServer(options, function (req, res) {
+server.listen(3000);
+/*http.createServer(function (req, res) {
 	var params = urllib.parse(req.url, true);
 	console.log(params);
 	console.log(params.query.callback);
-	var str = params.query.callback + '(' + JSON.stringify("{'httpsTest':'可用'}") + ')'; //jsonp
+	var str = params.query.callback + '('+ JSON.stringify("{'total':'5000'}") + ')'; //jsonp
 	res.end(str);
-}).listen(8000);
+}).listen(8000);*/
